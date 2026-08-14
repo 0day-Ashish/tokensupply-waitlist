@@ -34,10 +34,12 @@ export function SiteHeader() {
           snaps between widths instead of easing. */}
       <div
         style={{ maxWidth: scrolled ? "56rem" : "100rem" }}
-        className={`mx-auto flex w-full items-center justify-between backdrop-blur-xl transition-[max-width,height,border-radius,background-color,border-color,box-shadow,padding] duration-[900ms] ease-[var(--ease-out-quint)] ${
+        className={`mx-auto flex w-full items-center justify-between transition-[max-width,height,border-radius,background-color,border-color,box-shadow,padding] duration-[900ms] ease-[var(--ease-out-quint)] ${
           scrolled
-            ? "h-[60px] rounded-full border border-[var(--line-strong)] bg-[var(--bg-raised)]/70 pr-3 pl-5 shadow-[0_10px_40px_-12px_rgb(0_0_0_/_0.45)] sm:pr-4 sm:pl-6"
-            : "h-[76px] rounded-none border border-transparent border-b-[var(--line)]/70 bg-[var(--bg-raised)]/70 px-6 shadow-none sm:px-10"
+            ? // Blur only once the pill has a surface; frosting a transparent
+              // bar would still smear the content scrolling under it.
+              "h-[60px] rounded-full border border-[var(--line-strong)] bg-[var(--bg-raised)]/70 pr-3 pl-5 shadow-[0_10px_40px_-12px_rgb(0_0_0_/_0.45)] backdrop-blur-xl sm:pr-4 sm:pl-6"
+            : "h-[76px] rounded-none border border-transparent bg-transparent px-6 shadow-none sm:px-10"
         }`}
       >
         <Link href="/" aria-label="TokenSupply home">
