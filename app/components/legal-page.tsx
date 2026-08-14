@@ -1,4 +1,3 @@
-import { Mark } from "./logo";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
@@ -41,8 +40,7 @@ export function LegalPage({
           <div className="mx-auto max-w-3xl">
             {/* Heading */}
             <div className="ts-rise">
-              <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                <Mark className="h-3 w-3" />
+              <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
                 {eyebrow}
               </span>
               <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">

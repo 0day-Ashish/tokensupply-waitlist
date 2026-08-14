@@ -261,6 +261,14 @@ body {
   animation: ts-marquee 42s linear infinite;
 }
 
+/* The logos are links now, so hold the track still while the pointer is over
+   it or a logo has keyboard focus - otherwise the target slides out from
+   under the cursor mid-click. */
+.ts-marquee:hover .ts-marquee-track,
+.ts-marquee:focus-within .ts-marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ts-marquee-track {
     animation: none;

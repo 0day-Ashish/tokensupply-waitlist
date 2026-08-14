@@ -12,16 +12,20 @@ import { WaitlistForm } from "./components/waitlist-form";
  * box with object-contain rather than at a shared width.
  */
 const CHANNELS = [
-  { name: "G2A", src: "/assets/g2a.webp" },
-  { name: "Eneba", src: "/assets/eneba.webp" },
-  { name: "Kinguin", src: "/assets/kinguin.webp" },
-  { name: "eBay", src: "/assets/ebay.png" },
-  { name: "Shopify", src: "/assets/shopify.png" },
-  { name: "G2G", src: "/assets/g2g.png" },
-  { name: "Gamivo", src: "/assets/gamivo.webp" },
-  { name: "Driffle", src: "/assets/driffle.webp" },
-  { name: "BigCommerce", src: "/assets/bigcommerce.webp" },
-  { name: "Whoop", src: "/assets/whoop.png" },
+  { name: "G2A", src: "/assets/435267.png", href: "https://www.g2a.com" },
+  { name: "Eneba", src: "/assets/eneba.webp", href: "https://www.eneba.com" },
+  { name: "Kinguin", src: "/assets/kinguin.webp", href: "https://www.kinguin.net" },
+  { name: "eBay", src: "/assets/ebay.png", href: "https://www.ebay.com" },
+  { name: "Shopify", src: "/assets/shopify.png", href: "https://www.shopify.com" },
+  { name: "G2G", src: "/assets/g2g.png", href: "https://www.g2g.com" },
+  { name: "Gamivo", src: "/assets/gamivo250.png", href: "https://www.gamivo.com" },
+  { name: "Driffle", src: "/assets/driffle250.png", href: "https://driffle.com" },
+  {
+    name: "BigCommerce",
+    src: "/assets/bigcommerce.webp",
+    href: "https://www.bigcommerce.com",
+  },
+  { name: "Whoop", src: "/assets/whoop.png", href: "https://www.whoop.com" },
 ];
 
 const PROOF = [
@@ -160,7 +164,7 @@ export default function Home() {
                     ))}
                   </div>
                   <span className="mx-auto rounded-md bg-[var(--bg-inset)] px-3 py-1 font-mono text-[11px] text-[var(--fg-faint)]">
-                    app.tokensupply.io
+                    tokensupply.io
                   </span>
                 </div>
 
@@ -208,9 +212,15 @@ export default function Home() {
                       className="flex shrink-0 items-start"
                     >
                       {CHANNELS.map((channel) => (
-                        <div
+                        <a
                           key={channel.name}
-                          className="flex w-[150px] shrink-0 flex-col items-center gap-3 px-2 sm:w-[176px]"
+                          href={channel.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          // The duplicated track is decorative, so only the
+                          // first copy is reachable by keyboard or a11y tree.
+                          tabIndex={copy === 1 ? -1 : undefined}
+                          className="flex w-[150px] shrink-0 flex-col items-center gap-3 px-2 transition-opacity duration-200 hover:opacity-70 sm:w-[176px]"
                         >
                           {/* Fixed-height box keeps wide wordmarks and square
                               icons optically consistent. */}
@@ -226,7 +236,7 @@ export default function Home() {
                           <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
                             {channel.name}
                           </span>
-                        </div>
+                        </a>
                       ))}
                     </div>
                   ))}
