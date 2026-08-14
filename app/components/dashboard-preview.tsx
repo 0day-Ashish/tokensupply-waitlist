@@ -8,6 +8,8 @@ type Order = {
   id: string;
   channel: string;
   product: string;
+  /** Partially masked: a real dashboard never shows a full key in a list. */
+  key: string;
   price: string;
   /** Milliseconds after a row appears before it flips to delivered. */
   deliverAfter: number;
@@ -22,6 +24,7 @@ const ORDERS: Order[] = [
     id: "TS-4192",
     channel: "G2A",
     product: "Elden Ring Steam Key",
+    key: "XK9F-2MQ7-TT41",
     price: "$38.40",
     deliverAfter: 900,
   },
@@ -29,6 +32,7 @@ const ORDERS: Order[] = [
     id: "TS-4193",
     channel: "Kinguin",
     product: "Office 2021 Pro Plus",
+    key: "7HN2-9PLD-4KQX",
     price: "$52.00",
     deliverAfter: 1100,
   },
@@ -36,6 +40,7 @@ const ORDERS: Order[] = [
     id: "TS-4194",
     channel: "Eneba",
     product: "PlayStation Plus 12M",
+    key: "BQ4W-6RZM-1VTC",
     price: "$61.25",
     deliverAfter: 800,
   },
@@ -43,6 +48,7 @@ const ORDERS: Order[] = [
     id: "TS-4195",
     channel: "Shopify",
     product: "Windows 11 Pro OEM",
+    key: "M3TD-8JXK-9WFN",
     price: "$29.99",
     deliverAfter: 1000,
   },
@@ -50,6 +56,7 @@ const ORDERS: Order[] = [
     id: "TS-4196",
     channel: "eBay",
     product: "Xbox Game Pass 3M",
+    key: "D6PV-2LSQ-7HGB",
     price: "$44.10",
     deliverAfter: 950,
   },
@@ -162,15 +169,35 @@ export function DashboardPreview() {
           </p>
         </div>
 
+        {/* Column headings. The grid must match the row grid below exactly or
+            the labels drift out of line with their values. */}
+        <div className="mt-4 grid grid-cols-[56px_1fr_auto] items-center gap-4 border-b border-[var(--line)] pb-2 sm:grid-cols-[72px_1fr_140px_72px_96px]">
+          <span className="font-mono text-[9.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+            Channel
+          </span>
+          <span className="font-mono text-[9.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+            Product
+          </span>
+          <span className="hidden font-mono text-[9.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase sm:block">
+            Key
+          </span>
+          <span className="hidden font-mono text-[9.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase sm:block">
+            Price
+          </span>
+          <span className="justify-self-end font-mono text-[9.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase sm:justify-self-start">
+            Status
+          </span>
+        </div>
+
         {/* Fixed height for the full set of rows. Without this the table grows
             as rows stream in, resizing the whole frame and shifting the page. */}
-        <div className="mt-1 min-h-[250px]">
+        <div className="min-h-[250px]">
           {rows.map((order) => {
             const isDelivered = delivered.has(order.id);
             return (
               <div
                 key={order.id}
-                className="ts-row grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-[var(--line)] py-3 last:border-b-0 sm:grid-cols-[72px_1fr_auto_96px]"
+                className="ts-row grid grid-cols-[56px_1fr_auto] items-center gap-4 border-b border-[var(--line)] py-3 last:border-b-0 sm:grid-cols-[72px_1fr_140px_72px_96px]"
               >
                 <span className="font-mono text-[11px] text-[var(--fg-faint)]">
                   {order.channel}
@@ -180,13 +207,19 @@ export function DashboardPreview() {
                   {order.product}
                 </span>
 
+                {/* Keys are always set in mono (brand guidelines §06, §08).
+                    Desktop only: the row has no space for it on a phone. */}
+                <span className="hidden font-mono text-[12px] tracking-[0.04em] text-[var(--fg-faint)] sm:block">
+                  {order.key}
+                </span>
+
                 <span className="hidden font-mono text-[12px] text-[var(--fg-muted)] sm:block">
                   {order.price}
                 </span>
 
                 {/* Status is text only: colour carries the state, no pill. */}
                 <span
-                  className={`justify-self-end font-mono text-[10.5px] tracking-[0.1em] uppercase transition-colors duration-700 ${
+                  className={`justify-self-end font-mono text-[10.5px] tracking-[0.1em] uppercase transition-colors duration-700 sm:justify-self-start ${
                     isDelivered ? "text-[var(--accent)]" : "text-[var(--fg-faint)]"
                   }`}
                 >
