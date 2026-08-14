@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "../components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — TokenSupply",
+  title: "Terms of Service · TokenSupply",
   description:
     "The terms that govern your use of TokenSupply's automated key delivery service.",
 };
@@ -19,7 +19,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "The service",
     body: [
-      "TokenSupply connects the marketplaces you already sell on — such as G2A, Eneba, Kinguin, eBay and Shopify — and delivers digital keys to your buyers automatically when an order is placed. We also synchronise stock levels across connected channels to reduce the risk of overselling.",
+      "TokenSupply connects the marketplaces you already sell on, such as G2A, Eneba, Kinguin, eBay and Shopify, and delivers digital keys to your buyers automatically when an order is placed. We also synchronise stock levels across connected channels to reduce the risk of overselling.",
       "The Service is currently in early access. Features may change, and availability targets described on our marketing pages are goals rather than contractual guarantees.",
     ],
   },
@@ -37,7 +37,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "Your content and keys",
     body: [
-      "You keep ownership of the keys, product data, and other content you upload. You grant us a limited licence to store, process, and transmit that content strictly so we can operate the Service on your behalf — for example, delivering a key to the buyer who purchased it.",
+      "You keep ownership of the keys, product data, and other content you upload. You grant us a limited licence to store, process, and transmit that content strictly so we can operate the Service on your behalf; for example, delivering a key to the buyer who purchased it.",
       "You are responsible for having the right to sell everything you upload. Do not upload keys you did not lawfully obtain, or that you are not authorised to resell.",
     ],
   },
@@ -55,7 +55,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Third-party marketplaces",
     body: [
       "The Service works by connecting to marketplaces we do not control. Your relationship with each marketplace is governed by that marketplace's own terms, and they may change their APIs, fees, or policies at any time.",
-      "We are not responsible for a marketplace suspending your account, changing its rules, or experiencing an outage — though we will make reasonable efforts to keep our integrations working.",
+      "We are not responsible for a marketplace suspending your account, changing its rules, or experiencing an outage, though we will make reasonable efforts to keep our integrations working.",
     ],
   },
   {
@@ -107,7 +107,7 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Legal"
       title="Terms of Service"
-      intro="The ground rules for using TokenSupply — what we provide, what we ask of you, and where responsibility sits between us."
+      intro="The ground rules for using TokenSupply: what we provide, what we ask of you, and where responsibility sits between us."
       updated="15 August 2026"
       sections={SECTIONS}
     />

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "../components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — TokenSupply",
+  title: "Privacy Policy · TokenSupply",
   description:
     "How TokenSupply collects, uses, and protects your data and your buyers' data.",
 };
@@ -13,16 +13,16 @@ const SECTIONS: LegalSection[] = [
     heading: "Who we are",
     body: [
       "TokenSupply Private Limited (\"TokenSupply\", \"we\", \"us\") operates the automated key delivery service described on this site. This policy explains what personal data we collect, why we collect it, and what rights you have over it.",
-      "For data you upload about your own buyers, you are the data controller and we act as your processor — we handle that data only to run the Service on your instructions.",
+      "For data you upload about your own buyers, you are the data controller and we act as your processor, handling that data only to run the Service on your instructions.",
     ],
   },
   {
     heading: "Information we collect",
     body: ["We collect three broad categories of data:"],
     bullets: [
-      "Account data — the name, email address, company name, and billing details you give us when joining the waitlist or creating an account.",
-      "Order and inventory data — the keys, product listings, stock counts, order IDs, and buyer email addresses we receive from the marketplaces you connect, so we can fulfil deliveries.",
-      "Usage and technical data — log entries, IP address, browser type, and pages visited, which help us diagnose faults and keep the Service secure.",
+      "Account data: the name, email address, company name, and billing details you give us when joining the waitlist or creating an account.",
+      "Order and inventory data: the keys, product listings, stock counts, order IDs, and buyer email addresses we receive from the marketplaces you connect, so we can fulfil deliveries.",
+      "Usage and technical data: log entries, IP address, browser type, and pages visited, which help us diagnose faults and keep the Service secure.",
     ],
   },
   {
@@ -46,7 +46,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Sharing your information",
     body: [
       "We do not sell your personal data, and we do not sell or share your buyers' data for advertising.",
-      "We share data only with service providers who help us operate — such as cloud hosting, payment processing, error monitoring, and email delivery — and with the marketplaces you explicitly connect. These providers act on our instructions and are bound by confidentiality obligations.",
+      "We share data only with service providers who help us operate, such as cloud hosting, payment processing, error monitoring, and email delivery, and with the marketplaces you explicitly connect. These providers act on our instructions and are bound by confidentiality obligations.",
       "We may also disclose data if required by law, or as part of a merger or acquisition, in which case we will notify you before your data becomes subject to a different policy.",
     ],
   },
@@ -67,7 +67,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Security",
     body: [
       "Keys and credentials are encrypted in transit and at rest, and access to production systems is restricted to staff who need it.",
-      "No system is perfectly secure, so we cannot guarantee absolute security — but if a breach affects your data, we will notify you and the relevant authorities as the law requires.",
+      "No system is perfectly secure, so we cannot guarantee absolute security, but if a breach affects your data, we will notify you and the relevant authorities as the law requires.",
     ],
   },
   {

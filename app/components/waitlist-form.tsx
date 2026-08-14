@@ -24,7 +24,7 @@ export function WaitlistForm() {
     setStatus("submitting");
     setMessage("");
 
-    // No backend wired up yet — swap this for the real endpoint.
+    // No backend wired up yet - swap this for the real endpoint.
     await new Promise((resolve) => setTimeout(resolve, 700));
 
     setStatus("done");

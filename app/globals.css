@@ -1,7 +1,4 @@
 @import "tailwindcss";
-/* Lenis smooth scroll. Includes `html.lenis { height: auto }`, which is needed
-   because the root layout sets h-full on <html>. */
-@import "lenis/dist/lenis.css";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -41,12 +38,12 @@
   --bg-inset: #0e1412;
   --fg: #fafaf8;
   --fg-muted: #97a39d;
-  /* Was #5d6b64 (3.61:1) — too dim for the small-caps labels and "last
+  /* Was #5d6b64 (3.61:1) - too dim for the small-caps labels and "last
      updated" lines that use it. Lifted to clear 4.5:1 on the dark surface. */
   --fg-faint: #7e8c85;
   --line: #1b2320;
   --line-strong: #26322d;
-  /* Neon mint is the marketing register on ink (§05) — 11.4:1 on ink. */
+  /* Neon mint is the marketing register on ink (§05) - 11.4:1 on ink. */
   --accent: #35e6a6;
   /* Same value on ink: already far above 4.5:1 at any size. */
   --accent-text: #35e6a6;
@@ -62,17 +59,17 @@
   --bg-inset: #f0f4f1;
   --fg: #101312;
   --fg-muted: #5a6862;
-  /* Was #8b978f, which only reached 2.89:1 on the light surface — below the
+  /* Was #8b978f, which only reached 2.89:1 on the light surface - below the
      4.5:1 minimum. These faint labels carry real text (section headers,
      "last updated"), so they need to be readable, not decorative. */
   --fg-faint: #67736c;
   --line: #e0e7e2;
   --line-strong: #ccd7d0;
   /* Deep mint handles text accents on white (§05). Bright mint (#17C989) is
-     reserved for solid fills — as text on paper it only reaches ~2.4:1. */
+     reserved for solid fills - as text on paper it only reaches ~2.4:1. */
   --accent: #0e8a64;
-  /* Deep mint is rated AA *large* only (4.2:1 per §05), so small accent text —
-     12px section numbers, eyebrow labels — uses a darkened mint to clear 4.5:1
+  /* Deep mint is rated AA *large* only (4.2:1 per §05), so small accent text -
+     12px section numbers, eyebrow labels - uses a darkened mint to clear 4.5:1
      without changing the brand colour used for fills and large type. */
   --accent-text: #0b6f51;
   --accent-ink: #fafaf8;
@@ -132,18 +129,6 @@ body {
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes ts-pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.45;
-    transform: scale(0.82);
   }
 }
 
@@ -224,24 +209,19 @@ body {
   transform: translateY(-2px);
 }
 
-/* An order row sliding into the live table. */
+/* An order row appearing in the live table. A plain fade: sliding rows drew
+   attention to the motion rather than the data. */
 @keyframes ts-row-in {
   from {
     opacity: 0;
-    transform: translateY(-6px);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
 
 .ts-row {
-  animation: ts-row-in 0.45s var(--ease-out-quint) both;
-}
-
-.ts-spin {
-  animation: ts-mark-spin 0.7s linear infinite;
+  animation: ts-row-in 0.5s ease both;
 }
 
 /* Note: the dashboard frame deliberately has no entrance animation. Scaling it
@@ -264,7 +244,7 @@ body {
 }
 
 /* Logo marquee. The track holds two identical copies of the list, so shifting
-   it by exactly -50% lands on the start of the second copy — an invisible seam
+   it by exactly -50% lands on the start of the second copy - an invisible seam
    that loops forever. */
 @keyframes ts-marquee {
   from {
@@ -293,33 +273,16 @@ body {
 
 /* A value counting up in the stat strip. */
 @keyframes ts-tick {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
+  from {
+    opacity: 0.35;
   }
-  100% {
+  to {
     opacity: 1;
-    transform: none;
   }
 }
 
 .ts-tick {
-  animation: ts-tick 0.4s var(--ease-out-quint);
-}
-
-/* A bar filling toward its target width. */
-@keyframes ts-bar-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.ts-bar {
-  transform-origin: left;
-  animation: ts-bar-fill 1.1s var(--ease-out-quint) both;
+  animation: ts-tick 0.5s ease;
 }
 
 @keyframes ts-drift {
@@ -340,10 +303,6 @@ body {
   animation: ts-fade 1.1s ease both;
 }
 
-.ts-dot {
-  animation: ts-pulse-dot 2.4s ease-in-out infinite;
-}
-
 .ts-drift {
   animation: ts-drift 18s ease-in-out infinite;
 }
@@ -359,7 +318,7 @@ body {
 }
 
 @theme inline {
-  /* Note: don't redefine --font-sans here — it's already set in the @theme
+  /* Note: don't redefine --font-sans here - it's already set in the @theme
      block above from the Geist next/font variable, and a self-referential
      value (`var(--font-sans)`) silently drops the font. */
   --font-heading: var(--font-sans);
@@ -418,7 +377,7 @@ body {
   --muted-foreground: oklch(0.556 0 0);
   /* Renamed from --accent/--accent-foreground: those names collided with the
      brand mint accent defined near the top of this file, and because these
-     rules come later they won the cascade — turning accent text and buttons
+     rules come later they won the cascade - turning accent text and buttons
      near-white and invisible in light mode. */
   --ui-accent: oklch(0.97 0 0);
   --ui-accent-foreground: oklch(0.205 0 0);

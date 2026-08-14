@@ -15,13 +15,13 @@ type Order = {
 
 /**
  * Rows stream in one at a time, sit in "delivering" for a beat, then flip to
- * "delivered" — the same loop the real fulfilment pipeline runs.
+ * "delivered" - the same loop the real fulfilment pipeline runs.
  */
 const ORDERS: Order[] = [
   {
     id: "TS-4192",
     channel: "G2A",
-    product: "Elden Ring — Steam Key",
+    product: "Elden Ring Steam Key",
     price: "$38.40",
     deliverAfter: 900,
   },
@@ -125,7 +125,7 @@ function useJitter(base: number, spread: number, decimals = 1) {
   useEffect(() => {
     let step = 0;
     const timer = setInterval(() => {
-      // Deterministic wobble — avoids Math.random so server and client agree.
+      // Deterministic wobble - avoids Math.random so server and client agree.
       step += 1;
       const wave = Math.sin(step * 0.7) * 0.6 + Math.sin(step * 1.9) * 0.4;
       setValue(+(base + wave * spread).toFixed(decimals));
@@ -143,19 +143,18 @@ export function DashboardPreview() {
   const rows = ORDERS.slice(0, visible);
 
   return (
-    <div className="bg-[var(--bg-inset)]">
-      {/* Stat strip */}
-      <div className="grid grid-cols-3 gap-px border-b border-[var(--line)] bg-[var(--line)]">
+    <div className="bg-[var(--bg-raised)]">
+      {/* Stat strip: plain figures separated by hairlines, no filled panels. */}
+      <div className="grid grid-cols-3 border-b border-[var(--line)]">
         <Stat label="Orders today" value={String(fulfilled)} />
-        <Stat label="Avg. delivery" value={`${avgDelivery.toFixed(1)}s`} accent />
+        <Stat label="Avg. delivery" value={`${avgDelivery.toFixed(1)}s`} />
         <Stat label="Oversold" value="0" />
       </div>
 
       {/* Orders table */}
-      <div className="p-4 sm:p-5">
-        <div className="flex items-center justify-between">
-          <p className="flex items-center gap-2 font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
-            <span className="ts-dot h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+      <div className="px-5 py-5 sm:px-6">
+        <div className="flex items-baseline justify-between">
+          <p className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
             Orders · Today
           </p>
           <p className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
@@ -165,19 +164,19 @@ export function DashboardPreview() {
 
         {/* Fixed height for the full set of rows. Without this the table grows
             as rows stream in, resizing the whole frame and shifting the page. */}
-        <div className="mt-4 min-h-[250px] space-y-1.5">
+        <div className="mt-1 min-h-[250px]">
           {rows.map((order) => {
             const isDelivered = delivered.has(order.id);
             return (
               <div
                 key={order.id}
-                className="ts-row grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-lg border border-[var(--line)] bg-[var(--bg-raised)] px-3 py-2.5 sm:grid-cols-[70px_1fr_auto_auto] sm:gap-4"
+                className="ts-row grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-[var(--line)] py-3 last:border-b-0 sm:grid-cols-[72px_1fr_auto_96px]"
               >
                 <span className="font-mono text-[11px] text-[var(--fg-faint)]">
                   {order.channel}
                 </span>
 
-                <span className="truncate text-[13px] text-[var(--fg)]">
+                <span className="truncate text-[13.5px] text-[var(--fg)]">
                   {order.product}
                 </span>
 
@@ -185,35 +184,13 @@ export function DashboardPreview() {
                   {order.price}
                 </span>
 
+                {/* Status is text only: colour carries the state, no pill. */}
                 <span
-                  className={`flex items-center gap-1.5 justify-self-end rounded-full px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] uppercase transition-colors duration-500 ${
-                    isDelivered
-                      ? "bg-[var(--accent)]/15 text-[var(--accent)]"
-                      : "bg-[var(--bg-inset)] text-[var(--fg-faint)]"
+                  className={`justify-self-end font-mono text-[10.5px] tracking-[0.1em] uppercase transition-colors duration-700 ${
+                    isDelivered ? "text-[var(--accent)]" : "text-[var(--fg-faint)]"
                   }`}
                 >
-                  {isDelivered ? (
-                    <>
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                        className="h-2.5 w-2.5"
-                      >
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                      Delivered
-                    </>
-                  ) : (
-                    <>
-                      <span className="ts-spin h-2.5 w-2.5 rounded-full border border-current border-t-transparent" />
-                      Sending
-                    </>
-                  )}
+                  {isDelivered ? "Delivered" : "Sending"}
                 </span>
               </div>
             );
@@ -221,58 +198,23 @@ export function DashboardPreview() {
         </div>
       </div>
 
-      {/* Channel throughput — each bar refills as its channel is processed. */}
-      <div className="border-t border-[var(--line)] px-4 py-3 sm:px-5">
-        <div className="flex items-center gap-3">
-          {CHANNEL_LOAD.map((channel, i) => (
-            <div key={channel.name} className="flex-1">
-              <div className="flex items-baseline justify-between">
-                <span className="font-mono text-[9.5px] tracking-[0.1em] text-[var(--fg-faint)] uppercase">
-                  {channel.name}
-                </span>
-              </div>
-              <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-[var(--line)]">
-                <div
-                  className="ts-bar h-full rounded-full bg-[var(--accent)]"
-                  style={{
-                    width: `${channel.load}%`,
-                    animationDelay: `${i * 160}ms`,
-                    animationDuration: `${1.4 + i * 0.2}s`,
-                    animationIterationCount: "infinite",
-                    animationDirection: "alternate",
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Footer bar */}
-      <div className="flex items-center justify-between border-t border-[var(--line)] px-4 py-3 sm:px-5">
+      <div className="flex items-center justify-between border-t border-[var(--line)] px-5 py-3.5 sm:px-6">
         <span className="flex items-center gap-2 font-mono text-[10px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
           <Mark className="h-2.5 w-2.5 text-[var(--accent)]" />
           Stock synced
         </span>
         <span className="font-mono text-[10px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
-          5 channels connected
+          {CHANNEL_LOAD.length} channels connected
         </span>
       </div>
     </div>
   );
 }
 
-function Stat({
-  label,
-  value,
-  accent = false,
-}: {
-  label: string;
-  value: string;
-  accent?: boolean;
-}) {
+function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-[var(--bg-inset)] px-4 py-4 sm:px-5">
+    <div className="border-r border-[var(--line)] px-5 py-5 last:border-r-0 sm:px-6">
       <p className="font-mono text-[10px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
         {label}
       </p>
@@ -280,9 +222,7 @@ function Stat({
           tick animation replays on every update. */}
       <p
         key={value}
-        className={`ts-tick mt-1.5 font-semibold text-[1.6rem] leading-none ${
-          accent ? "text-[var(--accent)]" : "text-[var(--fg)]"
-        }`}
+        className="ts-tick mt-2 text-[1.5rem] leading-none font-medium tracking-[-0.02em] text-[var(--fg)] tabular-nums"
       >
         {value}
       </p>

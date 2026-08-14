@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 type Theme = "dark" | "light";
 
 /**
- * The <html data-theme> attribute is the source of truth — the inline script in
+ * The <html data-theme> attribute is the source of truth - the inline script in
  * <head> sets it before first paint, so we read it rather than mirror it in
  * component state.
  */
@@ -37,7 +37,7 @@ export function ThemeToggle() {
     try {
       localStorage.setItem("theme", next);
     } catch {
-      // Storage can be unavailable (private mode, blocked cookies) — the
+      // Storage can be unavailable (private mode, blocked cookies) - the
       // toggle still works for this session.
     }
   }

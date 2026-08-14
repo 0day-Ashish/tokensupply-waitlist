@@ -38,7 +38,7 @@ export function ContactForm() {
     setStatus("submitting");
     setError("");
 
-    // No backend wired up yet — swap this for the real endpoint.
+    // No backend wired up yet - swap this for the real endpoint.
     await new Promise((resolve) => setTimeout(resolve, 700));
 
     setStatus("done");
@@ -73,7 +73,7 @@ export function ContactForm() {
           Message sent.
         </h2>
         <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--fg-muted)]">
-          Thanks for reaching out — we usually reply within one business day.
+          Thanks for reaching out. We usually reply within one business day.
         </p>
       </div>
     );

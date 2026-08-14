@@ -6,7 +6,7 @@ import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 
 export const metadata: Metadata = {
-  title: "Contact — TokenSupply",
+  title: "Contact · TokenSupply",
   description:
     "Questions about automated key delivery, early access, or partnerships? Get in touch with the TokenSupply team.",
 };

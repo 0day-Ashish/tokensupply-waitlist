@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteBackground } from "./components/site-background";
-import { SmoothScroll } from "./components/smooth-scroll";
 
 // Brand face. Headings 600, body 400/500 (brand guidelines §06).
 const spaceGrotesk = Space_Grotesk({
@@ -17,11 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TokenSupply — Automated key delivery for digital goods stores",
+  title: "TokenSupply · Automated key delivery for digital goods stores",
   description:
     "TokenSupply connects the channels you already sell on: G2A, Eneba, Kinguin, eBay and Shopify. Every key is delivered the second the order lands.",
   openGraph: {
-    title: "TokenSupply — Automated key delivery",
+    title: "TokenSupply · Automated key delivery",
     description:
       "Every key delivered the second the order lands. Stock synced, nothing oversold, no manual steps.",
     type: "website",
@@ -46,12 +45,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteBackground />
-        <SmoothScroll>
-          {/* Page content sits above the fixed background layer. */}
-          <div className="relative z-10 flex min-h-full flex-1 flex-col">
-            {children}
-          </div>
-        </SmoothScroll>
+        {/* Page content sits above the fixed background layer. */}
+        <div className="relative z-10 flex min-h-full flex-1 flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

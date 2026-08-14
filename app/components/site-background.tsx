@@ -13,7 +13,7 @@ export function SiteBackground() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* Base surface — the waves paint on top of this. */}
+      {/* Base surface - the waves paint on top of this. */}
       <div className="absolute inset-0 bg-[var(--bg)]" />
 
       <div

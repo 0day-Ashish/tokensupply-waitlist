@@ -34,7 +34,7 @@ const STEPS = [
   {
     n: "01",
     title: "Connect your channels",
-    body: "Link the marketplaces you already sell on. Orders start flowing in within minutes — no migration, no new storefront to maintain.",
+    body: "Link the marketplaces you already sell on. Orders start flowing in within minutes, with no migration and no new storefront to maintain.",
   },
   {
     n: "02",
@@ -65,7 +65,7 @@ export default function Home() {
           </div>
 
           <div className="relative z-10 mx-auto max-w-4xl text-center">
-            {/* ts-rise on the wrapper, spin on the svg — separate elements so
+            {/* ts-rise on the wrapper, spin on the svg - separate elements so
                 the two transforms don't overwrite each other. */}
             <div className="ts-fade mx-auto w-fit">
               <Mark
@@ -74,14 +74,15 @@ export default function Home() {
               />
             </div>
 
-            {/* Two fixed lines: the explicit <br /> holds the break so the
-                headline never reflows to three lines as the viewport narrows. */}
+            {/* Two lines from sm: up, where the <br /> applies. Below that the
+                headline wraps naturally: forcing two lines on a phone shrank it
+                to ~22px, smaller than the 17px lead paragraph beneath it. */}
             <h1
-              className="ts-rise mx-auto mt-10 font-semibold text-[clamp(1.4rem,5vw,3.6rem)] leading-[1.12] tracking-[-0.025em]"
+              className="ts-rise mx-auto mt-10 font-semibold text-[clamp(2.15rem,5.2vw,3.6rem)] leading-[1.14] tracking-[-0.025em] sm:leading-[1.12]"
               style={{ animationDelay: "60ms" }}
             >
               <span className="text-[var(--accent)]">Automated key delivery</span>
-              <br />{" "}
+              <br className="hidden sm:inline" />{" "}
               <span className="text-[var(--fg)]">
                 for stores that sell digital goods.
               </span>
@@ -91,7 +92,7 @@ export default function Home() {
               className="ts-rise mx-auto mt-7 max-w-[620px] text-[17px] leading-[1.6] text-[var(--fg-muted)]"
               style={{ animationDelay: "140ms" }}
             >
-              TokenSupply connects the channels you already sell on — from G2A,
+              TokenSupply connects the channels you already sell on, from G2A,
               Eneba and Kinguin to eBay and Shopify. Every key is delivered the
               second the order lands. Stock synced, nothing oversold, no manual
               steps.
@@ -146,14 +147,15 @@ export default function Home() {
               </span>
 
               {/* Browser chrome */}
-              <div className="relative overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--bg-raised)] shadow-[0_40px_120px_-40px_rgb(0_0_0_/_0.6)]">
+              <div className="relative m-[2px] overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--bg-raised)] shadow-[0_40px_120px_-40px_rgb(0_0_0_/_0.6)]">
                 <div className="flex items-center gap-3 border-b border-[var(--line)] px-4 py-3">
-                  <div className="flex gap-1.5">
-                    {["#3f4a44", "#3f4a44", "#3f4a44"].map((c, i) => (
+                  {/* macOS traffic lights */}
+                  <div className="flex gap-2">
+                    {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
                       <span
-                        key={i}
-                        className="h-2.5 w-2.5 rounded-full"
-                        style={{ background: c }}
+                        key={color}
+                        className="h-3 w-3 rounded-full"
+                        style={{ background: color }}
                       />
                     ))}
                   </div>
@@ -260,7 +262,7 @@ export default function Home() {
             </div>
 
             {/* Dividers come from each cell's own border rather than the old
-                gap-px + background trick, which needs opaque cells to work —
+                gap-px + background trick, which needs opaque cells to work -
                 the cards are transparent so the page shows through. */}
             <div className="mt-14 grid overflow-hidden rounded-2xl border border-[var(--line)] sm:grid-cols-3">
               {STEPS.map((step) => (

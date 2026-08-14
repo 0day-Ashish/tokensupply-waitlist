@@ -2,7 +2,7 @@ type MarkProps = {
   className?: string;
   /**
    * Bloom each petal in on load, then rotate slowly. Only worth it for the
-   * hero mark — the header/footer copies stay static.
+   * hero mark - the header/footer copies stay static.
    */
   animated?: boolean;
 };
