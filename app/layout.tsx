@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { SiteBackground } from "./components/site-background";
+import { SmoothScroll } from "./components/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,10 +53,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteBackground />
-        {/* Page content sits above the fixed background layer. */}
-        <div className="relative z-10 flex min-h-full flex-1 flex-col">
-          {children}
-        </div>
+        <SmoothScroll>
+          {/* Page content sits above the fixed background layer. */}
+          <div className="relative z-10 flex min-h-full flex-1 flex-col">
+            {children}
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );

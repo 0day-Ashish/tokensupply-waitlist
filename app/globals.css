@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Lenis smooth scroll. Includes `html.lenis { height: auto }`, which is needed
+   because the root layout sets h-full on <html>. */
+@import "lenis/dist/lenis.css";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
