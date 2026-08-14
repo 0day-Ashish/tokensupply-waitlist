@@ -89,7 +89,7 @@ export default function Home() {
             </h1>
 
             <p
-              className="ts-rise mx-auto mt-7 max-w-[620px] text-[17px] leading-[1.6] text-[var(--fg-muted)]"
+              className="ts-rise mx-auto mt-7 max-w-[580px] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]"
               style={{ animationDelay: "140ms" }}
             >
               TokenSupply connects the channels you already sell on, from G2A,
