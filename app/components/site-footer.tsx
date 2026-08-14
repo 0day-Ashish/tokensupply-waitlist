@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Mark, Wordmark } from "./logo";
+import { Wordmark } from "./logo";
 
 const SOCIALS = [
   { label: "X / Twitter", href: "https://x.com" },
@@ -87,9 +87,8 @@ export function SiteFooter() {
               Privacy
             </Link>
           </div>
-          <p className="flex items-center gap-2 font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-faint)] uppercase">
+          <p className="font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-faint)] uppercase">
             Every key, one mark
-            <Mark className="h-3 w-3 text-[var(--accent)]" />
           </p>
         </div>
       </div>
