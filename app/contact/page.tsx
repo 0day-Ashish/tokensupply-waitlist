@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { ContactForm } from "../components/contact-form";
-import { Mark } from "../components/logo";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 
@@ -43,8 +42,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-6xl">
             {/* Heading */}
             <div className="ts-rise max-w-2xl">
-              <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                <Mark className="h-3 w-3" />
+              <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
                 Contact
               </span>
               <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
