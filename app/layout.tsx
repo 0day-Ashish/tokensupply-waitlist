@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteBackground } from "./components/site-background";
 import { SmoothScroll } from "./components/smooth-scroll";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Brand face. Headings 600, body 400/500 (brand guidelines §06).
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-// Display face for headings. Ships at 400 only — no bolder weight exists, so
-// headings must not set font-weight or the browser will synthesise a fake bold.
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-});
-
+// Keys, order IDs and amounts are always set in mono (§06, §08).
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -41,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
         {/* Apply the saved theme before first paint to avoid a flash. */}

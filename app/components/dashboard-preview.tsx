@@ -280,7 +280,7 @@ function Stat({
           tick animation replays on every update. */}
       <p
         key={value}
-        className={`ts-tick mt-1.5 font-serif text-[1.6rem] leading-none ${
+        className={`ts-tick mt-1.5 font-semibold text-[1.6rem] leading-none ${
           accent ? "text-[var(--accent)]" : "text-[var(--fg)]"
         }`}
       >

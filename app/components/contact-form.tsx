@@ -69,7 +69,7 @@ export function ContactForm() {
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </span>
-        <h2 className="mt-5 font-serif text-[1.75rem] leading-tight text-[var(--fg)]">
+        <h2 className="mt-5 font-semibold text-[1.75rem] leading-tight text-[var(--fg)]">
           Message sent.
         </h2>
         <p className="mx-auto mt-3 max-w-sm text-[15px] leading-relaxed text-[var(--fg-muted)]">

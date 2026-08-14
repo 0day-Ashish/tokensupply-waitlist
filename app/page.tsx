@@ -74,12 +74,17 @@ export default function Home() {
               />
             </div>
 
+            {/* Two fixed lines: the explicit <br /> holds the break so the
+                headline never reflows to three lines as the viewport narrows. */}
             <h1
-              className="ts-rise text-balance-pretty mt-10 font-serif text-[clamp(2.6rem,7vw,4.9rem)] leading-[1.06] tracking-[-0.02em]"
+              className="ts-rise mx-auto mt-10 font-semibold text-[clamp(1.4rem,5vw,3.6rem)] leading-[1.12] tracking-[-0.025em]"
               style={{ animationDelay: "60ms" }}
             >
-              <span className="text-[var(--accent)]">Automated key delivery</span>{" "}
-              <span className="text-[var(--fg)]">for stores that sell digital goods.</span>
+              <span className="text-[var(--accent)]">Automated key delivery</span>
+              <br />{" "}
+              <span className="text-[var(--fg)]">
+                for stores that sell digital goods.
+              </span>
             </h1>
 
             <p
@@ -169,14 +174,21 @@ export default function Home() {
             </div>
 
             {/* Channel strip */}
-            <div className="mt-14 text-center">
-              <p className="font-mono text-[11px] tracking-[0.16em] text-[var(--fg-faint)] uppercase">
-                Works with the channels you already sell on
+            <div className="mt-32 text-center sm:mt-40">
+              <p className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
+                Integrations
+              </p>
+              <h2 className="mx-auto mt-5 max-w-2xl text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] font-semibold tracking-[-0.025em] text-[var(--fg)]">
+                Every channel you sell on, in one place.
+              </h2>
+              <p className="mx-auto mt-8 max-w-md text-[15.5px] leading-[1.6] text-[var(--fg-muted)]">
+                Connect a marketplace once and TokenSupply keeps its stock and
+                deliveries in sync with everywhere else.
               </p>
               {/* Marquee. Breaks out of the centered column to run edge to
                   edge, with the sides faded so logos enter and leave softly. */}
               <div
-                className="ts-marquee mt-9 -mx-6 overflow-hidden"
+                className="ts-marquee mt-16 -mx-6 overflow-hidden sm:mt-20"
                 style={{
                   maskImage:
                     "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)",
@@ -196,7 +208,7 @@ export default function Home() {
                       {CHANNELS.map((channel) => (
                         <div
                           key={channel.name}
-                          className="group flex w-[150px] shrink-0 flex-col items-center gap-3 px-2 sm:w-[176px]"
+                          className="flex w-[150px] shrink-0 flex-col items-center gap-3 px-2 sm:w-[176px]"
                         >
                           {/* Fixed-height box keeps wide wordmarks and square
                               icons optically consistent. */}
@@ -206,10 +218,10 @@ export default function Home() {
                               alt=""
                               width={160}
                               height={56}
-                              className="h-full w-auto max-w-[140px] object-contain opacity-85 transition-opacity duration-300 group-hover:opacity-100"
+                              className="h-full w-auto max-w-[140px] object-contain"
                             />
                           </div>
-                          <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--fg-faint)] uppercase transition-colors duration-300 group-hover:text-[var(--fg)]">
+                          <span className="font-mono text-[11px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
                             {channel.name}
                           </span>
                         </div>
@@ -227,7 +239,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-4xl gap-10 sm:grid-cols-3">
             {PROOF.map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="font-serif text-[2.9rem] leading-none tracking-[-0.01em] text-[var(--accent)]">
+                <p className="font-semibold text-[2.9rem] leading-none tracking-[-0.01em] text-[var(--accent)]">
                   {stat.value}
                 </p>
                 <p className="mt-3 font-mono text-[11px] tracking-[0.13em] text-[var(--fg-muted)] uppercase">
@@ -242,23 +254,26 @@ export default function Home() {
         <section className="px-6 py-24">
           <div className="mx-auto max-w-5xl">
             <div className="max-w-2xl">
-              <h2 className="font-serif text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 Three steps. Then it stops being your problem.
               </h2>
             </div>
 
-            <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-3">
+            {/* Dividers come from each cell's own border rather than the old
+                gap-px + background trick, which needs opaque cells to work —
+                the cards are transparent so the page shows through. */}
+            <div className="mt-14 grid overflow-hidden rounded-2xl border border-[var(--line)] sm:grid-cols-3">
               {STEPS.map((step) => (
                 <div
                   key={step.n}
-                  className="ts-card group relative bg-[var(--bg)] p-8 transition-colors duration-300 hover:bg-[var(--bg-raised)]"
+                  className="ts-card group relative border-t border-[var(--line)] bg-transparent p-8 transition-colors duration-300 first:border-t-0 hover:bg-[var(--fg)]/[0.03] sm:border-t-0 sm:border-l sm:first:border-l-0"
                 >
                   {/* Accent bar that wipes across the top edge on hover */}
                   <span
                     aria-hidden="true"
                     className="ts-card-rule absolute inset-x-0 top-0 h-px bg-[var(--accent)]"
                   />
-                  <span className="ts-card-num block font-mono text-[12px] tracking-[0.16em] text-[var(--accent)]">
+                  <span className="ts-card-num block font-mono text-[12px] tracking-[0.16em] text-[var(--accent-text)]">
                     {step.n}
                   </span>
                   <h3 className="mt-5 text-[19px] font-semibold tracking-[-0.015em] text-[var(--fg)]">

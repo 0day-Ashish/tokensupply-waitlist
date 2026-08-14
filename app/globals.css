@@ -8,9 +8,17 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Brand type (§06): Space Grotesk for everything, mono for keys and amounts. */
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-serif: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette (§05) */
+  --color-ink: #101312;
+  --color-paper: #fafaf8;
+  --color-mint-deep: #0e8a64;
+  --color-mint-bright: #17c989;
+  --color-mint-neon: #35e6a6;
 
   --color-mint-100: #d6f5e3;
   --color-mint-200: #a9e9c6;
@@ -31,25 +39,28 @@
   --bg: #050706;
   --bg-raised: #0b0f0d;
   --bg-inset: #0e1412;
-  --fg: #f2f6f4;
+  --fg: #fafaf8;
   --fg-muted: #97a39d;
   /* Was #5d6b64 (3.61:1) — too dim for the small-caps labels and "last
      updated" lines that use it. Lifted to clear 4.5:1 on the dark surface. */
   --fg-faint: #7e8c85;
   --line: #1b2320;
   --line-strong: #26322d;
-  --accent: #7ddfaa;
-  --accent-ink: #04150c;
-  --accent-glow: rgb(125 223 170 / 0.14);
+  /* Neon mint is the marketing register on ink (§05) — 11.4:1 on ink. */
+  --accent: #35e6a6;
+  /* Same value on ink: already far above 4.5:1 at any size. */
+  --accent-text: #35e6a6;
+  --accent-ink: #101312;
+  --accent-glow: rgb(53 230 166 / 0.13);
   --grid-line: rgb(255 255 255 / 0.022);
-  --mark-ghost: rgb(125 223 170 / 0.05);
+  --mark-ghost: rgb(53 230 166 / 0.05);
 }
 
 [data-theme="light"] {
   --bg: #f7faf8;
   --bg-raised: #ffffff;
   --bg-inset: #f0f4f1;
-  --fg: #0a1410;
+  --fg: #101312;
   --fg-muted: #5a6862;
   /* Was #8b978f, which only reached 2.89:1 on the light surface — below the
      4.5:1 minimum. These faint labels carry real text (section headers,
@@ -57,11 +68,17 @@
   --fg-faint: #67736c;
   --line: #e0e7e2;
   --line-strong: #ccd7d0;
-  --accent: #1f7a4d;
-  --accent-ink: #ffffff;
-  --accent-glow: rgb(31 122 77 / 0.1);
+  /* Deep mint handles text accents on white (§05). Bright mint (#17C989) is
+     reserved for solid fills — as text on paper it only reaches ~2.4:1. */
+  --accent: #0e8a64;
+  /* Deep mint is rated AA *large* only (4.2:1 per §05), so small accent text —
+     12px section numbers, eyebrow labels — uses a darkened mint to clear 4.5:1
+     without changing the brand colour used for fills and large type. */
+  --accent-text: #0b6f51;
+  --accent-ink: #fafaf8;
+  --accent-glow: rgb(14 138 100 / 0.1);
   --grid-line: rgb(0 0 0 / 0.028);
-  --mark-ghost: rgb(31 122 77 / 0.06);
+  --mark-ghost: rgb(14 138 100 / 0.06);
 }
 
 html {
@@ -232,6 +249,20 @@ body {
    visibly expand and then shrink. The frame stays static; only its contents
    animate (see the counter/row rules used by <DashboardPreview />). */
 
+/* Brand logo files: the light-coloured SVG shows on the dark surface, the dark
+   PNG on the light surface. Dark is the default theme, so start with the SVG. */
+.ts-logo-dark {
+  opacity: 0;
+}
+
+[data-theme="light"] .ts-logo-light {
+  opacity: 0;
+}
+
+[data-theme="light"] .ts-logo-dark {
+  opacity: 1;
+}
+
 /* Logo marquee. The track holds two identical copies of the list, so shifting
    it by exactly -50% lands on the start of the second copy — an invisible seam
    that loops forever. */
@@ -248,10 +279,6 @@ body {
   display: flex;
   width: max-content;
   animation: ts-marquee 42s linear infinite;
-}
-
-.ts-marquee:hover .ts-marquee-track {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

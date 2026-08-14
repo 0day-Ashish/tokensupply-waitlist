@@ -41,11 +41,11 @@ export function LegalPage({
           <div className="mx-auto max-w-3xl">
             {/* Heading */}
             <div className="ts-rise">
-              <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent)] uppercase">
+              <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
                 <Mark className="h-3 w-3" />
                 {eyebrow}
               </span>
-              <h1 className="mt-6 font-serif text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+              <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                 {title}
               </h1>
               <p className="mt-5 text-[17px] leading-[1.65] text-[var(--fg-muted)]">
@@ -68,7 +68,7 @@ export function LegalPage({
               <ol className="mt-4 space-y-2">
                 {sections.map((section, i) => (
                   <li key={section.heading} className="flex gap-3">
-                    <span className="font-mono text-[12px] text-[var(--accent)]">
+                    <span className="font-mono text-[12px] text-[var(--accent-text)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <a
@@ -93,8 +93,8 @@ export function LegalPage({
                   id={slugify(section.heading)}
                   className="scroll-mt-28"
                 >
-                  <h2 className="flex items-baseline gap-3 font-serif text-[1.65rem] leading-tight text-[var(--fg)]">
-                    <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--accent)]">
+                  <h2 className="flex items-baseline gap-3 font-semibold text-[1.65rem] leading-tight text-[var(--fg)]">
+                    <span className="font-mono text-[12px] tracking-[0.14em] text-[var(--accent-text)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {section.heading}
@@ -131,14 +131,14 @@ export function LegalPage({
 
             {/* Questions */}
             <div className="mt-16 rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/60 p-6 sm:p-8">
-              <h2 className="font-serif text-[1.4rem] leading-tight text-[var(--fg)]">
+              <h2 className="font-semibold text-[1.4rem] leading-tight text-[var(--fg)]">
                 Questions about this page?
               </h2>
               <p className="mt-3 text-[15px] leading-relaxed text-[var(--fg-muted)]">
                 Email{" "}
                 <a
                   href="mailto:support@tokensupply.io"
-                  className="text-[var(--accent)] transition-opacity duration-200 hover:opacity-80"
+                  className="text-[var(--accent-text)] transition-opacity duration-200 hover:opacity-80"
                 >
                   support@tokensupply.io
                 </a>{" "}
