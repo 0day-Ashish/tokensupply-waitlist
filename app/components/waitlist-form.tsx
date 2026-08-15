@@ -24,11 +24,40 @@ export function WaitlistForm() {
     setStatus("submitting");
     setMessage("");
 
-    // No backend wired up yet - swap this for the real endpoint.
-    await new Promise((resolve) => setTimeout(resolve, 700));
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: value,
+          source: "hero",
+          utm: {
+            source: params.get("utm_source"),
+            medium: params.get("utm_medium"),
+            campaign: params.get("utm_campaign"),
+          },
+        }),
+      });
 
-    setStatus("done");
-    setMessage("You're on the list. We'll email you when your slot opens.");
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setStatus("error");
+        setMessage(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("done");
+      setMessage(
+        data.alreadyJoined
+          ? "You're already on the list. We'll email you when your slot opens."
+          : "You're on the list. We'll email you when your slot opens.",
+      );
+    } catch {
+      setStatus("error");
+      setMessage("Couldn't reach the server. Please try again.");
+    }
   }
 
   if (status === "done") {
