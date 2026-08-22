@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { DashboardPreview } from "./components/dashboard-preview";
 import { Mark } from "./components/logo";
+import { ProofCounter } from "./components/proof-counter";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { WaitlistForm } from "./components/waitlist-form";
@@ -28,10 +29,11 @@ const CHANNELS = [
   { name: "Whoop", src: "/assets/whoop.png", href: "https://www.whoop.com" },
 ];
 
+// Split into parts so the figure can count up while the "< " and unit stay put.
 const PROOF = [
-  { value: "< 2s", label: "Median delivery time" },
-  { value: "99.9%", label: "Fulfilment uptime" },
-  { value: "0", label: "Oversold keys" },
+  { value: 2, prefix: "< ", suffix: "s", label: "Median delivery time" },
+  { value: 99.9, suffix: "%", decimals: 1, label: "Fulfilment uptime" },
+  { value: 0, label: "Oversold keys" },
 ];
 
 const STEPS = [
@@ -251,9 +253,12 @@ export default function Home() {
           <div className="mx-auto grid max-w-4xl gap-10 sm:grid-cols-3">
             {PROOF.map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="font-semibold text-[2.9rem] leading-none tracking-[-0.01em] text-[var(--accent)]">
-                  {stat.value}
-                </p>
+                <ProofCounter
+                  value={stat.value}
+                  prefix={stat.prefix}
+                  suffix={stat.suffix}
+                  decimals={stat.decimals}
+                />
                 <p className="mt-3 font-mono text-[11px] tracking-[0.13em] text-[var(--fg-muted)] uppercase">
                   {stat.label}
                 </p>
@@ -300,6 +305,49 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ---------------- Closing CTA ---------------- */}
+        <section className="relative px-6 pt-24 pb-28">
+          {/* Oversized ghost mark, clipped to the rail frame rather than the
+              viewport: this wrapper is capped at the same 72rem the rails use
+              and hides its own overflow, so the mark bleeds off the right rail
+              instead of running past it to the window edge. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 mx-auto max-w-[72rem] overflow-hidden"
+          >
+            {/* Hidden below md: at this scale it sits on top of the headline on
+                a phone instead of beside it. */}
+            <div className="ts-drift absolute top-[72%] right-[-14%] hidden -translate-y-1/2 md:block">
+              {/* The tilt sits on the <Mark> itself, not on the .ts-drift
+                  wrapper: ts-drift animates `rotate`, so a rotation on that
+                  element would be overwritten every frame. Mark paints with
+                  currentColor, so the ghost tint is a text colour, not a fill. */}
+              <Mark className="h-[460px] w-[460px] rotate-[18deg] text-[var(--mark-ghost)] lg:h-[560px] lg:w-[560px]" />
+            </div>
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
+            <h2 className="mx-auto font-semibold text-[clamp(2.15rem,5.2vw,3.6rem)] leading-[1.14] tracking-[-0.025em] sm:leading-[1.12]">
+              <span className="text-[var(--fg)]">Never paste a key</span>
+              <br className="hidden sm:inline" />{" "}
+              <span className="text-[var(--accent)]">by hand</span>{" "}
+              <span className="text-[var(--fg)]">again.</span>
+            </h2>
+
+            <p className="mx-auto mt-7 max-w-[580px] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
+              Every channel, every key, one place. Your first channel is synced
+              the week you get access.
+            </p>
+
+            <div className="mt-10">
+              <WaitlistForm />
+            </div>
+
+            <p className="mt-8 font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-muted)] uppercase">
+              313 sellers already waiting · Early access rolls out monthly
+            </p>
+          </div>
+        </section>
       </main>
 
       <SiteFooter />

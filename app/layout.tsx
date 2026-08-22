@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteBackground } from "./components/site-background";
+import { SiteRails } from "./components/site-rails";
 
 // Brand face. Headings 600, body 400/500 (brand guidelines §06).
 const spaceGrotesk = Space_Grotesk({
@@ -32,19 +33,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="dark"
-      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        {/* Apply the saved theme before first paint to avoid a flash. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteBackground />
+        <SiteRails />
         {/* Page content sits above the fixed background layer. */}
         <div className="relative z-10 flex min-h-full flex-1 flex-col">
           {children}

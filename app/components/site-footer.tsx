@@ -2,6 +2,14 @@ import Link from "next/link";
 
 import { Wordmark } from "./logo";
 
+/** Mirrors the header nav, matching the live site's footer. */
+const PRODUCT = [
+  { label: "Channels", href: "/channels" },
+  { label: "Inventory", href: "/inventory" },
+  { label: "Delivery", href: "/delivery" },
+  { label: "Auto pricing", href: "/auto-pricing" },
+];
+
 const SOCIALS = [
   { label: "X / Twitter", href: "https://x.com" },
   { label: "LinkedIn", href: "https://linkedin.com" },
@@ -10,9 +18,17 @@ const SOCIALS = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-[var(--line)] px-6 pt-16">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto] lg:gap-x-24">
+    <footer className="relative overflow-hidden">
+      {/* The rule is drawn on this frame-width element rather than on <footer>
+          itself: a border on the full-width element ran edge to edge and cut
+          straight across both rails. Capped here, it stops exactly at them. */}
+      <div className="mx-auto max-w-[72rem] border-t border-[var(--line)]" />
+
+      {/* max-w-[72rem] with the padding *inside* it, matching <SiteHeader> and
+          <SiteRails> - a max-w-6xl container sitting inside a px-6 footer put
+          the content edge 1.5rem in from the rails instead of flush to them. */}
+      <div className="mx-auto max-w-[72rem] px-6 pt-16 sm:px-10">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-x-20">
           {/* Brand */}
           <div>
             <Link href="/" aria-label="TokenSupply home">
@@ -21,6 +37,25 @@ export function SiteFooter() {
             <p className="mt-5 max-w-[320px] text-[15px] leading-[1.6] text-[var(--fg-muted)]">
               Automated key delivery for stores that sell digital goods.
             </p>
+          </div>
+
+          {/* Product */}
+          <div>
+            <h3 className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+              Product
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {PRODUCT.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-[15px] text-[var(--fg-muted)] transition-colors duration-200 hover:text-[var(--fg)]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Social */}
@@ -93,11 +128,16 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Oversized watermark. Full-bleed rather than inside the max-w-6xl
-          container, so it centers on the viewport instead of overflowing
-          the container's right edge. */}
-      <div aria-hidden="true" className="pointer-events-none -mx-6 mt-10 select-none">
-        <p className="translate-y-[26%] text-center text-[clamp(4rem,17vw,15rem)] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--fg)]/[0.035]">
+      {/* Oversized watermark, sized to span the full rail width. No horizontal
+          padding and no max font size: the type scales purely with the
+          container so the word scales with the frame. 17cqw fills ~94% of the
+          rail width; 18cqw is the point where "tokensupply" exactly meets the
+          rails, so anything above it clips the trailing glyphs. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none mx-auto mt-10 max-w-[72rem] select-none [container-type:inline-size]"
+      >
+        <p className="translate-y-[26%] text-center text-[17cqw] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--fg)]/[0.035]">
           tokensupply
         </p>
       </div>

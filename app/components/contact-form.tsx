@@ -14,7 +14,7 @@ const TOPICS = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-[var(--line-strong)] bg-[var(--bg-raised)] px-4 py-3 text-[15px] text-[var(--fg)] placeholder:text-[var(--fg-faint)] transition-colors duration-200 focus:border-[var(--accent)]/70 focus:outline-none";
+  "w-full rounded-xl border border-[var(--line-strong)] bg-[var(--bg-raised)] px-4 py-3 text-[15px] text-[var(--fg)] placeholder:text-[var(--fg-faint)] transition-colors duration-200 focus:border-[var(--accent)]/70 focus:outline-none focus-visible:outline-none";
 
 const labelClass =
   "mb-2 block font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase";

@@ -30,7 +30,7 @@
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Dark is the default surface; the toggle flips to light. */
+/* Dark is the only surface. */
 :root,
 [data-theme="dark"] {
   --bg: #050706;
@@ -53,38 +53,9 @@
   --mark-ghost: rgb(53 230 166 / 0.05);
 }
 
-[data-theme="light"] {
-  --bg: #f7faf8;
-  --bg-raised: #ffffff;
-  --bg-inset: #f0f4f1;
-  --fg: #101312;
-  --fg-muted: #5a6862;
-  /* Was #8b978f, which only reached 2.89:1 on the light surface - below the
-     4.5:1 minimum. These faint labels carry real text (section headers,
-     "last updated"), so they need to be readable, not decorative. */
-  --fg-faint: #67736c;
-  --line: #e0e7e2;
-  --line-strong: #ccd7d0;
-  /* Deep mint handles text accents on white (§05). Bright mint (#17C989) is
-     reserved for solid fills - as text on paper it only reaches ~2.4:1. */
-  --accent: #0e8a64;
-  /* Deep mint is rated AA *large* only (4.2:1 per §05), so small accent text -
-     12px section numbers, eyebrow labels - uses a darkened mint to clear 4.5:1
-     without changing the brand colour used for fills and large type. */
-  --accent-text: #0b6f51;
-  --accent-ink: #fafaf8;
-  --accent-glow: rgb(14 138 100 / 0.1);
-  --grid-line: rgb(0 0 0 / 0.028);
-  --mark-ghost: rgb(14 138 100 / 0.06);
-}
-
 html {
   background: var(--bg);
   color-scheme: dark;
-}
-
-[data-theme="light"] {
-  color-scheme: light;
 }
 
 body {
@@ -187,6 +158,31 @@ body {
     ts-mark-breathe 6s ease-in-out 1.4s infinite;
 }
 
+/* Header wordmark hover: the asterisk spins a sixth of a turn and the whole
+   lockup warms to the accent. A 60deg turn (not 360) maps onto the mark's own
+   three-bar symmetry, so it lands back on itself rather than visibly unwinding
+   - and it reverses cleanly when the pointer leaves mid-turn. */
+.ts-wordmark .ts-wordmark-mark {
+  transition:
+    transform 0.5s var(--ease-out-quint),
+    color 0.3s ease;
+}
+
+.ts-wordmark:hover .ts-wordmark-mark,
+:focus-visible > .ts-wordmark .ts-wordmark-mark {
+  transform: rotate(60deg);
+  color: var(--accent);
+}
+
+.ts-wordmark .ts-wordmark-text {
+  transition: color 0.3s ease;
+}
+
+.ts-wordmark:hover .ts-wordmark-text,
+:focus-visible > .ts-wordmark .ts-wordmark-text {
+  color: var(--accent);
+}
+
 /* The rule number slides up and the accent bar wipes in on hover. */
 .ts-card .ts-card-rule {
   transform: scaleX(0);
@@ -228,20 +224,6 @@ body {
    in changed the element's rendered size mid-scroll, which made the whole page
    visibly expand and then shrink. The frame stays static; only its contents
    animate (see the counter/row rules used by <DashboardPreview />). */
-
-/* Brand logo files: the light-coloured SVG shows on the dark surface, the dark
-   PNG on the light surface. Dark is the default theme, so start with the SVG. */
-.ts-logo-dark {
-  opacity: 0;
-}
-
-[data-theme="light"] .ts-logo-light {
-  opacity: 0;
-}
-
-[data-theme="light"] .ts-logo-dark {
-  opacity: 1;
-}
 
 /* Logo marquee. The track holds two identical copies of the list, so shifting
    it by exactly -50% lands on the start of the second copy - an invisible seam
@@ -313,6 +295,14 @@ body {
 
 .ts-drift {
   animation: ts-drift 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the colour cue, drop the spin. */
+  .ts-wordmark:hover .ts-wordmark-mark,
+  :focus-visible > .ts-wordmark .ts-wordmark-mark {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

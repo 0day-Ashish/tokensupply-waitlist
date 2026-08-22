@@ -59,36 +59,16 @@ export function Mark({ className, animated = false }: MarkProps) {
   );
 }
 
-/**
- * The brand asset files, swapped by theme: logo.svg is near-white (for the dark
- * surface) and logo-dark.png is near-black (for the light surface). CSS handles
- * the swap so it survives the no-flash theme script with no JS.
- */
-export function LogoImage({ className }: { className?: string }) {
-  return (
-    <span className={`relative block ${className ?? ""}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/assets/logo.svg"
-        alt=""
-        className="ts-logo-light h-full w-full object-contain"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/assets/logo-dark.png"
-        alt=""
-        className="ts-logo-dark absolute inset-0 h-full w-full object-contain"
-      />
-    </span>
-  );
-}
-
 export function Wordmark({ className }: MarkProps) {
   return (
-    <span className={`flex items-center gap-2.5 ${className ?? ""}`}>
-      <LogoImage className="h-[22px] w-[22px]" />
+    // ts-wordmark is the hover hook; the rule lives in globals.css so the mark
+    // and the text can transition together off the one parent. This uses the
+    // inline <Mark> rather than the logo.svg <img> it replaced: an <img> can't
+    // inherit currentColor, and the hover tints the mark to the accent.
+    <span className={`ts-wordmark flex items-center gap-2.5 ${className ?? ""}`}>
+      <Mark className="ts-wordmark-mark h-[22px] w-[22px] text-[var(--fg)]" />
       {/* §03: Space Grotesk 600, always lowercase, tracked −0.025 em. */}
-      <span className="text-[19px] font-semibold lowercase tracking-[-0.025em] text-[var(--fg)]">
+      <span className="ts-wordmark-text text-[19px] font-semibold lowercase tracking-[-0.025em] text-[var(--fg)]">
         tokensupply
       </span>
     </span>

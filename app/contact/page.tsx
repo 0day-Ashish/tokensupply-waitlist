@@ -31,7 +31,7 @@ export default function ContactPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        <section className="relative overflow-hidden px-6 pt-32 pb-24 sm:pt-36">
+        <section className="relative overflow-hidden pt-32 pb-24 sm:pt-36">
           {/* Ambient glow, matching the home hero */}
           <div
             aria-hidden="true"
@@ -39,7 +39,10 @@ export default function ContactPage() {
             style={{ background: "var(--accent-glow)" }}
           />
 
-          <div className="mx-auto max-w-6xl">
+          {/* max-w-[72rem] with the padding *inside* it, matching <SiteHeader>
+              and <SiteRails>. A max-w-6xl container nested inside a px-6
+              section put the content edge 1.5rem in from the rails. */}
+          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
             {/* Heading */}
             <div className="ts-rise max-w-2xl">
               <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">

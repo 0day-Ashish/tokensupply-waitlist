@@ -1,15 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Wordmark } from "./logo";
-import { ThemeToggle } from "./theme-toggle";
 
 /** How far the user scrolls before the bar condenses into the floating pill. */
 const SCROLL_THRESHOLD = 60;
 
+/**
+ * Primary nav. Only /contact is built - the first four routes 404 until their
+ * pages land, and the links are in place so the bar is complete meanwhile.
+ */
+const NAV = [
+  { label: "Channels", href: "/channels" },
+  { label: "Inventory", href: "/inventory" },
+  { label: "Delivery", href: "/delivery" },
+  { label: "Auto pricing", href: "/auto-pricing" },
+  { label: "Contact", href: "/contact" },
+];
+
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,7 +46,7 @@ export function SiteHeader() {
           two states must both be concrete, interpolatable lengths or the bar
           snaps between widths instead of easing. */}
       <div
-        style={{ maxWidth: scrolled ? "56rem" : "100rem" }}
+        style={{ maxWidth: scrolled ? "56rem" : "72rem" }}
         className={`mx-auto flex w-full items-center justify-between transition-[max-width,height,border-radius,background-color,border-color,box-shadow,padding] duration-[900ms] ease-[var(--ease-out-quint)] ${
           scrolled
             ? // Blur only once the pill has a surface; frosting a transparent
@@ -45,15 +58,27 @@ export function SiteHeader() {
         <Link href="/" aria-label="TokenSupply home">
           <Wordmark />
         </Link>
-        <div className="flex items-center gap-4 sm:gap-5">
-          <Link
-            href="/contact"
-            className="text-[15px] text-[var(--fg-muted)] transition-colors duration-200 hover:text-[var(--fg)]"
-          >
-            Contact
-          </Link>
-          <ThemeToggle />
-        </div>
+        {/* Hidden below lg: five links plus the wordmark overflow the pill on
+            a phone. A mobile menu is the follow-up once the routes exist. */}
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+          {NAV.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={`text-[15px] transition-colors duration-200 ${
+                  active
+                    ? "text-[var(--fg)]"
+                    : "text-[var(--fg-muted)] hover:text-[var(--fg)]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </header>
   );
