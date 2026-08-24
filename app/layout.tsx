@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteBackground } from "./components/site-background";
 import { SiteRails } from "./components/site-rails";
 
-// Brand face. Headings 600, body 400/500 (brand guidelines §06).
+// Brand face, now headings only (brand guidelines §06).
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+// Body copy face. 400/500 for running text.
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -32,8 +38,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="dark"
-      className={`${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="light"
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <SiteBackground />

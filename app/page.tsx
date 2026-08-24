@@ -8,6 +8,16 @@ import { SiteHeader } from "./components/site-header";
 import { WaitlistForm } from "./components/waitlist-form";
 
 /**
+ * Seller faces for the hero social-proof stack. Square sources, so they're
+ * cropped to a circle with object-cover rather than boxed like the logos.
+ */
+const AVATARS = [
+  "/assets/avatars/avatar1.png",
+  "/assets/avatars/avatar2.png",
+  "/assets/avatars/avatar3.png",
+];
+
+/**
  * Marketplace logos live in public/assets. Source files vary in aspect ratio
  * (square icons through to wide wordmarks), so each is rendered inside a fixed
  * box with object-contain rather than at a shared width.
@@ -114,21 +124,16 @@ export default function Home() {
               style={{ animationDelay: "300ms" }}
             >
               <div className="flex -space-x-2">
-                {["OP", "GC", "VR"].map((initials, i) => (
-                  <span
-                    key={initials}
-                    className="grid h-7 w-7 place-items-center rounded-full border-2 border-[var(--bg)] font-mono text-[10px] font-semibold"
-                    style={{
-                      background: `color-mix(in oklab, var(--accent) ${28 + i * 26}%, var(--bg-inset))`,
-                      color: i === 2 ? "var(--accent-ink)" : "var(--fg)",
-                    }}
-                  >
-                    {initials}
-                  </span>
+                {AVATARS.map((src) => (
+                  <Image
+                    key={src}
+                    src={src}
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="h-7 w-7 rounded-full border-2 border-[var(--bg)] bg-[var(--bg-inset)] object-cover"
+                  />
                 ))}
-                <span className="grid h-7 w-7 place-items-center rounded-full border-2 border-[var(--bg)] bg-[var(--fg)] text-[var(--bg)]">
-                  <Mark className="h-2.5 w-2.5" />
-                </span>
               </div>
               <p className="font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-muted)] uppercase">
                 313 sellers already waiting · Early access rolls out monthly
@@ -153,7 +158,7 @@ export default function Home() {
               </span>
 
               {/* Browser chrome */}
-              <div className="relative m-[2px] overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--bg-raised)] shadow-[0_40px_120px_-40px_rgb(0_0_0_/_0.6)]">
+              <div className="relative m-[2px] overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--bg-raised)] shadow-[0_18px_50px_-24px_rgb(0_0_0_/_0.18)]">
                 <div className="flex items-center gap-3 border-b border-[var(--line)] px-4 py-3">
                   {/* macOS traffic lights */}
                   <div className="flex gap-2">
@@ -183,10 +188,7 @@ export default function Home() {
 
             {/* Channel strip */}
             <div className="mt-32 text-center sm:mt-40">
-              <p className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                Integrations
-              </p>
-              <h2 className="mx-auto mt-5 max-w-2xl text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] font-semibold tracking-[-0.025em] text-[var(--fg)]">
+              <h2 className="mx-auto max-w-2xl text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] font-semibold tracking-[-0.025em] text-[var(--fg)]">
                 Every channel you sell on, in one place.
               </h2>
               <p className="mx-auto mt-8 max-w-md text-[15.5px] leading-[1.6] text-[var(--fg-muted)]">
@@ -285,18 +287,27 @@ export default function Home() {
                   key={step.n}
                   className="ts-card group relative border-t border-[var(--line)] bg-transparent p-8 transition-colors duration-300 first:border-t-0 hover:bg-[var(--fg)]/[0.03] sm:border-t-0 sm:border-l sm:first:border-l-0"
                 >
+                  {/* Soft corner wash, mirroring the reference cards but in the
+                      brand mint. Painted under the card's text, which is lifted
+                      to z-10 below; the hover tint still reads because it sits
+                      on the card's own background beneath this layer. */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-[radial-gradient(125%_95%_at_50%_105%,var(--accent-wash)_0%,var(--accent-wash-mid)_38%,transparent_70%)]"
+                  />
+
                   {/* Accent bar that wipes across the top edge on hover */}
                   <span
                     aria-hidden="true"
-                    className="ts-card-rule absolute inset-x-0 top-0 h-px bg-[var(--accent)]"
+                    className="ts-card-rule absolute inset-x-0 top-0 h-px bg-[var(--accent)] z-10"
                   />
-                  <span className="ts-card-num block font-mono text-[12px] tracking-[0.16em] text-[var(--accent-text)]">
+                  <span className="ts-card-num relative z-10 block font-mono text-[12px] tracking-[0.16em] text-[var(--accent-text)]">
                     {step.n}
                   </span>
-                  <h3 className="mt-5 text-[19px] font-semibold tracking-[-0.015em] text-[var(--fg)]">
+                  <h3 className="relative z-10 mt-5 text-[19px] font-semibold tracking-[-0.015em] text-[var(--fg)]">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-[var(--fg-muted)]">
+                  <p className="relative z-10 mt-3 text-[15px] leading-[1.65] text-[var(--fg-muted)]">
                     {step.body}
                   </p>
                 </div>

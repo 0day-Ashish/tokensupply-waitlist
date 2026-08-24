@@ -86,9 +86,19 @@ function PricingDemo() {
 export default function AutoPricingPage() {
   return (
     <FeaturePage
-      eyebrow="Auto pricing"
       title="Set your floor. We do the fighting."
       intro="Rivals undercut around the clock, and every hour you are the second-cheapest offer is an hour of missed sales."
+      specs={[
+        { label: "Repricing", value: "Continuous" },
+        { label: "Floor", value: "Never breached" },
+        { label: "Scope", value: "Per listing" },
+        { label: "Undercut step", value: "Configurable" },
+      ]}
+      endpoint={{
+        label: "Pricing rule",
+        method: "PUT",
+        path: "/v1/listings/:id/pricing",
+      }}
       demo={<PricingDemo />}
       featuresTitle="The price war, fought properly."
       featuresIntro="Aggressive enough to stay cheapest, disciplined enough to never sell at a loss."

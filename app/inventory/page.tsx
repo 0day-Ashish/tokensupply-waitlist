@@ -93,9 +93,19 @@ function InventoryDemo() {
 export default function InventoryPage() {
   return (
     <FeaturePage
-      eyebrow="Inventory"
       title="One stock. Every listing."
       intro="Upload keys once and map them to your listings, from G2A, Eneba and Kinguin to eBay and Shopify. Every sale draws from the same pool, so counts match everywhere and nothing oversells."
+      specs={[
+        { label: "Pools per product", value: "1" },
+        { label: "Keys at rest", value: "Encrypted" },
+        { label: "Duplicate check", value: "On import" },
+        { label: "Audit trail", value: "Per key" },
+      ]}
+      endpoint={{
+        label: "Bulk import",
+        method: "POST",
+        path: "/v1/inventory/:sku/keys",
+      }}
       demo={<InventoryDemo />}
       featuresTitle="One inventory, properly managed."
       featuresIntro="Everything between uploading a key and it landing in a buyer's hands, handled for you."

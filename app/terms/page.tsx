@@ -105,7 +105,6 @@ const SECTIONS: LegalSection[] = [
 export default function TermsPage() {
   return (
     <LegalPage
-      eyebrow="Legal"
       title="Terms of Service"
       intro="The ground rules for using TokenSupply: what we provide, what we ask of you, and where responsibility sits between us."
       updated="15 August 2026"

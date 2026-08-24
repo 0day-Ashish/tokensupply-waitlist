@@ -9,15 +9,13 @@ import { Wordmark } from "./logo";
 /** How far the user scrolls before the bar condenses into the floating pill. */
 const SCROLL_THRESHOLD = 60;
 
-/**
- * Primary nav. Only /contact is built - the first four routes 404 until their
- * pages land, and the links are in place so the bar is complete meanwhile.
- */
+/** Primary nav. Every route here is built. */
 const NAV = [
   { label: "Channels", href: "/channels" },
   { label: "Inventory", href: "/inventory" },
   { label: "Delivery", href: "/delivery" },
   { label: "Auto pricing", href: "/auto-pricing" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -58,9 +56,9 @@ export function SiteHeader() {
         <Link href="/" aria-label="TokenSupply home">
           <Wordmark />
         </Link>
-        {/* Hidden below lg: five links plus the wordmark overflow the pill on
-            a phone. A mobile menu is the follow-up once the routes exist. */}
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+        {/* Hidden below xl: six links plus the wordmark overflow the condensed
+            pill at lg. A mobile menu is still the follow-up. */}
+        <nav className="hidden items-center gap-5 xl:flex xl:gap-6">
           {NAV.map((item) => {
             const active = pathname === item.href;
             return (

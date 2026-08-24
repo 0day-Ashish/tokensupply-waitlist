@@ -8,10 +8,28 @@ export type Feature = {
   body: string;
 };
 
+/** A label/value pair for the hero's spec rail. */
+export type Spec = {
+  label: string;
+  value: string;
+};
+
+/** The mono endpoint block under the hero intro. */
+export type Endpoint = {
+  /** Small caps label above the path, e.g. "Webhook". */
+  label: string;
+  /** Shown on the right of the header, e.g. "POST". */
+  method: string;
+  path: string;
+};
+
 type FeaturePageProps = {
-  eyebrow: string;
   title: string;
   intro: string;
+  /** Optional mono spec rail beside the headline. */
+  specs?: Spec[];
+  /** Optional code block under the intro. */
+  endpoint?: Endpoint;
   /** Heading above the six numbered cards. */
   featuresTitle: string;
   /** Optional line under that heading. */
@@ -27,13 +45,14 @@ type FeaturePageProps = {
 /**
  * Shared shell for the four product pages (channels, inventory, delivery,
  * auto pricing). They differ only in copy and in the demo panel under the
- * hero, so the chrome - eyebrow, hero, numbered grid, closing CTA - lives here
+ * hero, so the chrome - hero, numbered grid, closing CTA - lives here
  * rather than being repeated four times.
  */
 export function FeaturePage({
-  eyebrow,
   title,
   intro,
+  specs,
+  endpoint,
   featuresTitle,
   featuresIntro,
   features,
@@ -56,16 +75,56 @@ export function FeaturePage({
           />
 
           <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
-            <div className="ts-rise max-w-3xl">
-              <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                {eyebrow}
-              </span>
-              <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
-                {title}
-              </h1>
-              <p className="mt-5 max-w-[620px] text-[17px] leading-[1.65] text-[var(--fg-muted)]">
-                {intro}
-              </p>
+            {/* Two columns from lg: the headline holds the left, the spec rail
+                sits right. Below lg the rail stacks under the intro rather than
+                squeezing the measure of either. */}
+            <div className="ts-rise grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
+              <div>
+                <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+                  {title}
+                </h1>
+                <p className="mt-5 max-w-[620px] text-[17px] leading-[1.65] text-[var(--fg-muted)]">
+                  {intro}
+                </p>
+
+                {endpoint && (
+                  <div className="mt-8 max-w-[620px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--bg-inset)]">
+                    <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-2.5">
+                      <span className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+                        {endpoint.label}
+                      </span>
+                      <span className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--accent-text)] uppercase">
+                        {endpoint.method}
+                      </span>
+                    </div>
+                    {/* Long paths scroll inside the block rather than widening
+                        the hero column on a phone. */}
+                    <div className="overflow-x-auto px-4 py-3">
+                      <code className="font-mono text-[13px] whitespace-pre text-[var(--fg-muted)]">
+                        {endpoint.path}
+                      </code>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {specs && specs.length > 0 && (
+                <dl className="divide-y divide-[var(--line)] border-y border-[var(--line)] lg:mt-2">
+                  {specs.map((spec) => (
+                    <div
+                      key={spec.label}
+                      className="flex items-baseline justify-between gap-6 py-3.5"
+                    >
+                      <dt className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+                        {spec.label}
+                      </dt>
+                      <dd className="text-right font-mono text-[13px] text-[var(--fg)]">
+                        {spec.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
             </div>
 
             {demo && (
@@ -93,25 +152,27 @@ export function FeaturePage({
               )}
             </div>
 
-            {/* Dividers come from each cell's own border, matching the home
-                page's "how it works" grid - the cards are transparent, so the
+            {/* A reference list rather than a card wall: two columns, hairline
+                rules, and the index hanging in the gutter. Dividers come from
+                each row's own border - the rows are transparent, so the
                 gap-px + background trick would show the page through. */}
-            <div className="mt-14 grid overflow-hidden rounded-2xl border border-[var(--line)] sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid border-t border-[var(--line)] sm:grid-cols-2">
               {features.map((feature, i) => (
                 <div
                   key={feature.title}
-                  className="ts-card group relative border-t border-[var(--line)] p-8 transition-colors duration-300 first:border-t-0 hover:bg-[var(--fg)]/[0.03] sm:border-t-0 sm:border-l sm:first:border-l-0"
+                  className="ts-card group relative grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-1 border-b border-[var(--line)] py-7 pr-6 transition-colors duration-300 hover:bg-[var(--fg)]/[0.02] sm:even:border-l sm:even:pl-8"
                 >
-                  <span className="ts-card-num block font-mono text-[12px] text-[var(--accent-text)]">
+                  <span className="ts-card-num pt-[0.3rem] font-mono text-[11.5px] tracking-[0.12em] text-[var(--accent-text)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="ts-card-rule mt-4 block h-px w-10 bg-[var(--accent)]" />
-                  <h3 className="mt-5 text-[19px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-[1.65] text-[var(--fg-muted)]">
-                    {feature.body}
-                  </p>
+                  <div>
+                    <h3 className="text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-[38ch] text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                      {feature.body}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -121,31 +182,37 @@ export function FeaturePage({
         {extra && <section className="px-0 pb-16">{extra}</section>}
 
         {/* ---------------- Closing CTA ---------------- */}
-        <section className="relative px-6 pt-16 pb-28">
-          {/* Ghost mark clipped to the rail frame, matching the home page. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 mx-auto max-w-[72rem] overflow-hidden"
-          >
-            <div className="ts-drift absolute top-[72%] right-[-14%] hidden -translate-y-1/2 md:block">
-              <Mark className="h-[460px] w-[460px] rotate-[18deg] text-[var(--mark-ghost)] lg:h-[560px] lg:w-[560px]" />
+        <section className="px-6 pt-16 pb-28 sm:px-10">
+          {/* A bordered panel rather than a centred block: the copy holds the
+              left and the form the right, so the section reads as part of the
+              page's rhythm instead of a marketing interruption. */}
+          <div className="relative mx-auto max-w-[72rem] overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/50">
+            {/* Ghost mark clipped to the panel, matching the home page. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 overflow-hidden"
+            >
+              <div className="ts-drift absolute top-[70%] right-[-12%] hidden -translate-y-1/2 md:block">
+                <Mark className="h-[380px] w-[380px] rotate-[18deg] text-[var(--mark-ghost)] lg:h-[460px] lg:w-[460px]" />
+              </div>
             </div>
-          </div>
 
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h2 className="mx-auto font-semibold text-[clamp(2rem,4.6vw,3rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
-              {ctaTitle}
-            </h2>
-            <p className="mx-auto mt-6 max-w-[560px] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
-              Join the waitlist and your first channel is synced the week you
-              get access.
-            </p>
-            <div className="mt-10">
+            <div className="relative z-10 grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16">
+              <div>
+                <h2 className="font-semibold text-[clamp(1.85rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
+                  {ctaTitle}
+                </h2>
+                <p className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
+                  Join the waitlist and your first channel is synced the week
+                  you get access.
+                </p>
+                <p className="mt-6 font-mono text-[11px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
+                  313 sellers already waiting · Early access rolls out monthly
+                </p>
+              </div>
+
               <WaitlistForm />
             </div>
-            <p className="mt-8 font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-muted)] uppercase">
-              313 sellers already waiting · Early access rolls out monthly
-            </p>
           </div>
         </section>
       </main>

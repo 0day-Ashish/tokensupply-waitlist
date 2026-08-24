@@ -123,9 +123,19 @@ function ChannelDemo() {
 export default function ChannelsPage() {
   return (
     <FeaturePage
-      eyebrow="Integrations"
       title="Sell everywhere. Run it from here."
       intro="Instant delivery does the fulfilment, one inventory feeds the stock, and auto pricing keeps every offer competitive. A connection plugs your store into all three."
+      specs={[
+        { label: "Channels at launch", value: "10" },
+        { label: "Integration", value: "Seller API" },
+        { label: "Setup", value: "Minutes" },
+        { label: "Migration", value: "None" },
+      ]}
+      endpoint={{
+        label: "Connect",
+        method: "POST",
+        path: "/v1/channels/:slug/connect",
+      }}
       demo={<ChannelDemo />}
       featuresTitle="To connect a channel."
       featuresIntro="Official seller-API integrations only."

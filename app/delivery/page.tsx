@@ -91,9 +91,19 @@ function DeliveryDemo() {
 export default function DeliveryPage() {
   return (
     <FeaturePage
-      eyebrow="Instant delivery"
       title="Sold at 3am. Delivered at 3am."
       intro="An order lands on any channel. TokenSupply pulls a key from your vault, hands it to the buyer and updates stock on every other channel. It all happens before the buyer can refresh the page."
+      specs={[
+        { label: "Median delivery", value: "1.8s" },
+        { label: "Coverage", value: "24/7" },
+        { label: "Manual steps", value: "0" },
+        { label: "Confirmation", value: "Channel-acked" },
+      ]}
+      endpoint={{
+        label: "Order webhook",
+        method: "POST",
+        path: "/v1/orders/:id/fulfil",
+      }}
       demo={<DeliveryDemo />}
       featuresTitle="Built for the order you didn't see."
       features={FEATURES}

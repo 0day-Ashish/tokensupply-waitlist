@@ -9,7 +9,6 @@ export type LegalSection = {
 };
 
 type LegalPageProps = {
-  eyebrow: string;
   title: string;
   intro: string;
   /** Human-readable date, e.g. "15 August 2026". */
@@ -18,7 +17,6 @@ type LegalPageProps = {
 };
 
 export function LegalPage({
-  eyebrow,
   title,
   intro,
   updated,
@@ -40,10 +38,7 @@ export function LegalPage({
           <div className="mx-auto max-w-3xl">
             {/* Heading */}
             <div className="ts-rise">
-              <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                {eyebrow}
-              </span>
-              <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+              <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                 {title}
               </h1>
               <p className="mt-5 text-[17px] leading-[1.65] text-[var(--fg-muted)]">
@@ -54,26 +49,33 @@ export function LegalPage({
               </p>
             </div>
 
-            {/* Contents */}
+            {/* Contents. Hairline rows in two columns rather than a filled
+                card - it reads as an index, and keeps the panel from
+                dominating the top of a long legal page. */}
             <nav
               aria-label="On this page"
-              className="ts-rise mt-12 rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/60 p-6"
+              className="ts-rise mt-12 border-t border-[var(--line)]"
               style={{ animationDelay: "80ms" }}
             >
-              <h2 className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+              <h2 className="pt-5 font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
                 On this page
               </h2>
-              <ol className="mt-4 space-y-2">
+              <ol className="mt-3 grid sm:grid-cols-2">
                 {sections.map((section, i) => (
-                  <li key={section.heading} className="flex gap-3">
-                    <span className="font-mono text-[12px] text-[var(--accent-text)]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                  <li
+                    key={section.heading}
+                    className="border-b border-[var(--line)] sm:even:border-l sm:even:pl-6"
+                  >
                     <a
                       href={`#${slugify(section.heading)}`}
-                      className="text-[15px] text-[var(--fg-muted)] transition-colors duration-200 hover:text-[var(--fg)]"
+                      className="group flex gap-3 py-3 pr-4 transition-colors duration-200"
                     >
-                      {section.heading}
+                      <span className="font-mono text-[11.5px] tracking-[0.12em] text-[var(--accent-text)]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[14.5px] text-[var(--fg-muted)] transition-colors duration-200 group-hover:text-[var(--fg)]">
+                        {section.heading}
+                      </span>
                     </a>
                   </li>
                 ))}
@@ -127,21 +129,23 @@ export function LegalPage({
               ))}
             </div>
 
-            {/* Questions */}
-            <div className="mt-16 rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/60 p-6 sm:p-8">
-              <h2 className="font-semibold text-[1.4rem] leading-tight text-[var(--fg)]">
-                Questions about this page?
-              </h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-[var(--fg-muted)]">
-                Email{" "}
-                <a
-                  href="mailto:support@tokensupply.io"
-                  className="text-[var(--accent-text)] transition-opacity duration-200 hover:opacity-80"
-                >
-                  support@tokensupply.io
-                </a>{" "}
-                and we&apos;ll walk you through it.
-              </p>
+            {/* Questions. A ruled footer rather than a filled card, so the
+                page ends on the same hairline rhythm as the index above. */}
+            <div className="mt-16 flex flex-col gap-4 border-t border-[var(--line)] pt-8 sm:flex-row sm:items-baseline sm:justify-between">
+              <div>
+                <h2 className="font-semibold text-[1.25rem] leading-tight text-[var(--fg)]">
+                  Questions about this page?
+                </h2>
+                <p className="mt-2 text-[14.5px] leading-relaxed text-[var(--fg-muted)]">
+                  We&apos;ll walk you through it.
+                </p>
+              </div>
+              <a
+                href="mailto:support@tokensupply.io"
+                className="font-mono text-[13px] text-[var(--accent-text)] transition-opacity duration-200 hover:opacity-80"
+              >
+                support@tokensupply.io
+              </a>
             </div>
           </div>
         </section>

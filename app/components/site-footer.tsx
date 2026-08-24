@@ -19,16 +19,33 @@ const SOCIALS = [
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden">
+      {/* Dot grid, matching the reference: a 3px mint dot on a 16px lattice.
+          Two masks are stacked - a horizontal one that keeps the dots at the
+          left and right edges and clears the middle, and a vertical one that
+          fades them out before they reach the legal row. Sits at the very back
+          of the footer's stacking context so the wordmark and links paint over
+          it untouched.
+
+          The outer div mirrors <SiteRails> (max-w-[72rem], mx-3 sm:mx-5) so the
+          lattice starts and stops exactly at the rails instead of running to
+          the window edge. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 flex justify-center"
+      >
+        <div className="relative mx-3 w-full max-w-[72rem] bg-[radial-gradient(var(--grid-dot)_1.5px,transparent_1.5px)] bg-size-[16px_16px] mask-intersect mask-[linear-gradient(to_right,#000_0%,transparent_28%,transparent_72%,#000_100%),linear-gradient(to_bottom,#000_0%,#000_45%,transparent_85%)] sm:mx-5" />
+      </div>
+
       {/* The rule is drawn on this frame-width element rather than on <footer>
           itself: a border on the full-width element ran edge to edge and cut
           straight across both rails. Capped here, it stops exactly at them. */}
-      <div className="mx-auto max-w-[72rem] border-t border-[var(--line)]" />
+      <div className="relative z-10 mx-auto max-w-[72rem] border-t border-[var(--line)]" />
 
       {/* max-w-[72rem] with the padding *inside* it, matching <SiteHeader> and
           <SiteRails> - a max-w-6xl container sitting inside a px-6 footer put
           the content edge 1.5rem in from the rails instead of flush to them. */}
-      <div className="mx-auto max-w-[72rem] px-6 pt-16 sm:px-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] lg:gap-x-20">
+      <div className="relative z-10 mx-auto max-w-[72rem] px-6 pt-16 sm:px-10">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto_auto] lg:gap-x-16">
           {/* Brand */}
           <div>
             <Link href="/" aria-label="TokenSupply home">
@@ -55,6 +72,23 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+              Company
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <Link
+                  href="/about"
+                  className="text-[15px] text-[var(--fg-muted)] transition-colors duration-200 hover:text-[var(--fg)]"
+                >
+                  About
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -135,9 +169,12 @@ export function SiteFooter() {
           rails, so anything above it clips the trailing glyphs. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none mx-auto mt-10 max-w-[72rem] select-none [container-type:inline-size]"
+        className="pointer-events-none relative z-10 mx-auto mt-10 max-w-[72rem] select-none [container-type:inline-size]"
       >
-        <p className="translate-y-[26%] text-center text-[17cqw] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--fg)]/[0.035]">
+        {/* Tinted with the brand mint rather than --fg: at watermark opacity a
+            neutral ink reads as grey, so the colour has to come from the accent
+            ramp. Held low enough to stay a wash behind the legal row. */}
+        <p className="translate-y-[26%] text-center text-[17cqw] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--accent)]/[0.14]">
           tokensupply
         </p>
       </div>

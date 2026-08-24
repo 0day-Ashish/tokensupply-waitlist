@@ -101,7 +101,6 @@ const SECTIONS: LegalSection[] = [
 export default function PrivacyPage() {
   return (
     <LegalPage
-      eyebrow="Legal"
       title="Privacy Policy"
       intro="What we collect, why we collect it, and the control you keep over your data and your buyers' data."
       updated="15 August 2026"

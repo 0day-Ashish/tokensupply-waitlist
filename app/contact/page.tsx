@@ -45,10 +45,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
             {/* Heading */}
             <div className="ts-rise max-w-2xl">
-              <span className="font-mono text-[11px] tracking-[0.16em] text-[var(--accent-text)] uppercase">
-                Contact
-              </span>
-              <h1 className="mt-6 font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+              <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                 Let&apos;s get your keys delivering themselves.
               </h1>
               <p className="mt-5 max-w-xl text-[17px] leading-[1.6] text-[var(--fg-muted)]">
@@ -73,15 +70,20 @@ export default function ContactPage() {
                   Other ways to reach us
                 </h2>
 
-                <ul className="mt-6 space-y-8">
+                {/* Hairline-ruled rows rather than loose blocks, matching the
+                    spec rails on the product pages. */}
+                <ul className="mt-6 border-t border-[var(--line)]">
                   {CHANNELS.map((channel) => (
-                    <li key={channel.label}>
-                      <p className="font-mono text-[11px] tracking-[0.12em] text-[var(--fg-faint)] uppercase">
+                    <li
+                      key={channel.label}
+                      className="border-b border-[var(--line)] py-5"
+                    >
+                      <p className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
                         {channel.label}
                       </p>
                       <a
                         href={channel.href}
-                        className="mt-2 inline-block text-[17px] text-[var(--fg)] transition-colors duration-200 hover:text-[var(--accent)]"
+                        className="mt-2 inline-block font-mono text-[15px] text-[var(--fg)] transition-colors duration-200 hover:text-[var(--accent-text)]"
                       >
                         {channel.value}
                       </a>
@@ -91,6 +93,26 @@ export default function ContactPage() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Response-time facts, same register as the hero spec rails. */}
+                <dl className="mt-8 space-y-3">
+                  {[
+                    { label: "Typical reply", value: "< 1 business day" },
+                    { label: "Support hours", value: "Mon–Fri" },
+                  ].map((row) => (
+                    <div
+                      key={row.label}
+                      className="flex items-baseline justify-between gap-6"
+                    >
+                      <dt className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
+                        {row.label}
+                      </dt>
+                      <dd className="font-mono text-[13px] text-[var(--fg-muted)]">
+                        {row.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </div>

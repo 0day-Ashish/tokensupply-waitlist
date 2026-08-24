@@ -16,22 +16,25 @@ export function SiteBackground() {
       {/* Base surface - the waves paint on top of this. */}
       <div className="absolute inset-0 bg-[var(--bg)]" />
 
+      {/* On the white surface the wave field is a faint tint, not a scene: the
+          palette is inverted to pale mints and the layer opacity dropped, so it
+          reads as a soft wash at the base of the page rather than dark water. */}
       <div
-        className="absolute inset-x-0 bottom-0 h-[85%] opacity-80"
+        className="absolute inset-x-0 bottom-0 h-[85%] opacity-30"
         style={{
           maskImage: "linear-gradient(to top, #000 30%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(to top, #000 30%, transparent 100%)",
         }}
       >
         <GradientWaves
-          horizonColor="#0c2419"
-          waveColor="#2c7d57"
+          horizonColor="#ffffff"
+          waveColor="#d6f5e3"
           crestColor="#7ddfaa"
           speed={0.3}
           amplitude={2.2}
           brightness={1.0}
           opacity={1}
-          grainIntensity={0.03}
+          grainIntensity={0.02}
           detail="low"
           mouseInteraction={false}
         />
