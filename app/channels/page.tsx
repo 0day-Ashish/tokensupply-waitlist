@@ -59,7 +59,7 @@ const LISTINGS = [
 /** A seller panel for one connected channel, rendered as a static mock. */
 function ChannelDemo() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]">
+    <div className="overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--line)] px-5 py-3.5">
         <span className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
           G2A · Your store
@@ -142,7 +142,7 @@ export default function ChannelsPage() {
       features={FEATURES}
       ctaTitle="Don't see your channel? Tell us where you sell."
       extra={
-        <div className="mx-auto max-w-[72rem] px-6 pb-4 sm:px-10">
+        <div className="ts-frame pb-4">
           <h2 className="font-semibold text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
             Ten channels at launch.
           </h2>

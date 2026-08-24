@@ -51,10 +51,6 @@
   /* Text placed on top of an --accent fill. */
   --accent-ink: #ffffff;
   --accent-glow: rgb(13 132 96 / 0.1);
-  /* Card wash: a touch stronger than --accent-glow, which is tuned for the
-     ambient hero glow and disappears at card scale on white. */
-  --accent-wash: rgb(13 132 96 / 0.13);
-  --accent-wash-mid: rgb(13 132 96 / 0.05);
   --grid-line: rgb(0 0 0 / 0.03);
   /* Footer dot lattice. Mint rather than neutral so the grid reads as brand
      texture; the mask does the fading, so this stays a flat colour. */
@@ -90,6 +86,51 @@ body {
 
 @utility text-balance-pretty {
   text-wrap: balance;
+}
+
+/* The content frame, matching <SiteRails> exactly.
+ *
+ * The rails are capped at 72rem *and* inset by mx-3/sm:mx-5, so a container
+ * that is only max-w-[72rem] lands flush on the rail line at wide viewports
+ * and escapes it below ~1200px. Sharing one utility keeps the frame and the
+ * rails from drifting: change the cap or the inset here and both move.
+ */
+@utility ts-frame {
+  width: 100%;
+  /* Cap and inset both mirror <SiteRails>: the rails are max-w-[72rem] with
+     mx-3 / sm:mx-5, so the frame has to carry the same margin or it sits on
+     the rail line instead of inside it. */
+  max-width: 72rem;
+  margin-inline: 0.75rem;
+  padding-inline: 1.5rem;
+
+  @media (width >= 40rem) {
+    margin-inline: 1.25rem;
+    padding-inline: 2.5rem;
+  }
+
+  /* Once the viewport clears the cap plus both insets, centre it. */
+  @media (width >= calc(72rem + 2.5rem)) {
+    margin-inline: auto;
+  }
+}
+
+/* Same frame geometry with no inline padding, for elements that draw their own
+   border and pad their contents (the closing CTA panels, the demo frames).
+   Padding here would inset the content twice and pull the border in off the
+   rails, so only the width and inset are shared. */
+@utility ts-frame-flush {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: 0.75rem;
+
+  @media (width >= 40rem) {
+    margin-inline: 1.25rem;
+  }
+
+  @media (width >= calc(72rem + 2.5rem)) {
+    margin-inline: auto;
+  }
 }
 
 @keyframes ts-rise {

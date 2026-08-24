@@ -11,11 +11,11 @@ const SCROLL_THRESHOLD = 60;
 
 /** Primary nav. Every route here is built. */
 const NAV = [
+  { label: "About", href: "/about" },
   { label: "Channels", href: "/channels" },
   { label: "Inventory", href: "/inventory" },
   { label: "Delivery", href: "/delivery" },
   { label: "Auto pricing", href: "/auto-pricing" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -49,7 +49,7 @@ export function SiteHeader() {
           scrolled
             ? // Blur only once the pill has a surface; frosting a transparent
               // bar would still smear the content scrolling under it.
-              "h-[60px] rounded-full border border-[var(--line-strong)] bg-[var(--bg-raised)]/70 pr-3 pl-5 shadow-[0_10px_40px_-12px_rgb(0_0_0_/_0.45)] backdrop-blur-xl sm:pr-4 sm:pl-6"
+              "h-[60px] rounded-lg border border-[var(--line-strong)] bg-[var(--bg-raised)]/70 pr-3 pl-5 shadow-[0_10px_30px_-14px_rgb(0_0_0_/_0.16)] backdrop-blur-xl sm:pr-4 sm:pl-6"
             : "h-[76px] rounded-none border border-transparent bg-transparent px-6 shadow-none sm:px-10"
         }`}
       >

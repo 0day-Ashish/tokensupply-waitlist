@@ -67,14 +67,7 @@ export function FeaturePage({
       <main className="flex-1">
         {/* ---------------- Hero ---------------- */}
         <section className="relative overflow-hidden pt-32 pb-20 sm:pt-36">
-          {/* Ambient glow, matching the other pages */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[-22%] -z-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full blur-[120px]"
-            style={{ background: "var(--accent-glow)" }}
-          />
-
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             {/* Two columns from lg: the headline holds the left, the spec rail
                 sits right. Below lg the rail stacks under the intro rather than
                 squeezing the measure of either. */}
@@ -88,7 +81,7 @@ export function FeaturePage({
                 </p>
 
                 {endpoint && (
-                  <div className="mt-8 max-w-[620px] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--bg-inset)]">
+                  <div className="mt-8 max-w-[620px] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-inset)]">
                     <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-2.5">
                       <span className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
                         {endpoint.label}
@@ -140,7 +133,7 @@ export function FeaturePage({
           {/* Padding inside the 72rem cap, matching the hero above and
               <SiteRails> - on the section it fell outside the cap and left the
               heading flush against the left rail. */}
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             <div className="max-w-2xl">
               <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 {featuresTitle}
@@ -182,11 +175,11 @@ export function FeaturePage({
         {extra && <section className="px-0 pb-16">{extra}</section>}
 
         {/* ---------------- Closing CTA ---------------- */}
-        <section className="px-6 pt-16 pb-28 sm:px-10">
+        <section className="pt-16 pb-28">
           {/* A bordered panel rather than a centred block: the copy holds the
               left and the form the right, so the section reads as part of the
               page's rhythm instead of a marketing interruption. */}
-          <div className="relative mx-auto max-w-[72rem] overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/50">
+          <div className="relative ts-frame-flush overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]/50">
             {/* Ghost mark clipped to the panel, matching the home page. */}
             <div
               aria-hidden="true"

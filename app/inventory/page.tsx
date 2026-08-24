@@ -40,7 +40,7 @@ const MAPPED = ["G2A", "Eneba", "Kinguin", "eBay", "Shopify"];
 /** One pool of keys feeding five listings, all showing the same count. */
 function InventoryDemo() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]">
+    <div className="overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--line)] px-5 py-3.5">
         <span className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
           One pool
@@ -52,7 +52,7 @@ function InventoryDemo() {
 
       <div className="grid gap-8 p-6 sm:grid-cols-[220px_1fr] sm:gap-10 sm:p-8">
         {/* The vault */}
-        <div className="rounded-xl border border-[var(--line)] bg-[var(--bg-inset)] p-5">
+        <div className="rounded-lg border border-[var(--line)] bg-[var(--bg-inset)] p-5">
           <p className="text-[15px] text-[var(--fg)]">Windows 11 Pro</p>
           <p className="mt-4 font-mono text-[2.4rem] leading-none text-[var(--accent-text)]">
             412
@@ -63,7 +63,7 @@ function InventoryDemo() {
         </div>
 
         {/* Every listing drawing from it */}
-        <ul className="space-y-px overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)]">
+        <ul className="space-y-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)]">
           {MAPPED.map((channel) => (
             <li
               key={channel}

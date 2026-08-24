@@ -75,14 +75,7 @@ export default function AboutPage() {
       <main className="flex-1">
         {/* ---------------- Hero ---------------- */}
         <section className="relative overflow-hidden pt-32 pb-20 sm:pt-36">
-          {/* Ambient glow, matching the other pages */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[-22%] -z-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full blur-[120px]"
-            style={{ background: "var(--accent-glow)" }}
-          />
-
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             {/* Same two-column split as <FeaturePage>: headline left, spec
                 rail right, stacking below lg. */}
             <div className="ts-rise grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
@@ -118,7 +111,7 @@ export default function AboutPage() {
 
         {/* ---------------- Timeline ---------------- */}
         <section className="pb-20">
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             <div className="max-w-2xl">
               <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 How we got here.
@@ -150,7 +143,7 @@ export default function AboutPage() {
 
         {/* ---------------- Principles ---------------- */}
         <section className="pb-20">
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             <div className="max-w-2xl">
               <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 What we hold to.
@@ -185,7 +178,7 @@ export default function AboutPage() {
 
         {/* ---------------- Product links ---------------- */}
         <section className="pb-20">
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             <h2 className="font-mono text-[10.5px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
               The three pieces
             </h2>
@@ -231,9 +224,9 @@ export default function AboutPage() {
         </section>
 
         {/* ---------------- Closing CTA ---------------- */}
-        <section className="px-6 pt-4 pb-28 sm:px-10">
+        <section className="pt-4 pb-28">
           {/* Same bordered panel as <FeaturePage>'s closing CTA. */}
-          <div className="relative mx-auto max-w-[72rem] overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]/50">
+          <div className="relative ts-frame-flush overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]/50">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 overflow-hidden"

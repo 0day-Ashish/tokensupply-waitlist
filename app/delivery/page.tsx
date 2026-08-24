@@ -39,7 +39,7 @@ const STATS = [
 
 function DeliveryDemo() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)]">
+    <div className="overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--line)] px-5 py-3.5">
         <span className="font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">
           Delivery replay

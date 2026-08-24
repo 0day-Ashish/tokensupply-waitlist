@@ -28,13 +28,6 @@ export function LegalPage({
 
       <main className="flex-1">
         <section className="relative overflow-hidden px-6 pt-32 pb-24 sm:pt-36">
-          {/* Ambient glow, matching the other pages */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[-22%] -z-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full blur-[120px]"
-            style={{ background: "var(--accent-glow)" }}
-          />
-
           <div className="mx-auto max-w-3xl">
             {/* Heading */}
             <div className="ts-rise">

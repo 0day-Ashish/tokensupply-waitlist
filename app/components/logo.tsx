@@ -67,8 +67,12 @@ export function Wordmark({ className }: MarkProps) {
     // inherit currentColor, and the hover tints the mark to the accent.
     <span className={`ts-wordmark flex items-center gap-2.5 ${className ?? ""}`}>
       <Mark className="ts-wordmark-mark h-[22px] w-[22px] text-[var(--fg)]" />
-      {/* §03: Space Grotesk 600, always lowercase, tracked −0.025 em. */}
-      <span className="ts-wordmark-text text-[19px] font-semibold lowercase tracking-[-0.025em] text-[var(--fg)]">
+      {/* §03: Space Grotesk 600, always lowercase, tracked −0.025 em. The
+          family is set explicitly rather than inherited: body copy is DM Sans,
+          so without this the wordmark picks up the body face. A `font-heading`
+          utility isn't available - --font-heading lives in @theme inline, which
+          emits no font-family utilities - so the var is applied directly. */}
+      <span className="ts-wordmark-text text-[19px] font-semibold lowercase tracking-[-0.025em] text-[var(--fg)] [font-family:var(--font-heading)]">
         tokensupply
       </span>
     </span>

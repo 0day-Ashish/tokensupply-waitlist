@@ -39,12 +39,12 @@ export function SiteFooter() {
       {/* The rule is drawn on this frame-width element rather than on <footer>
           itself: a border on the full-width element ran edge to edge and cut
           straight across both rails. Capped here, it stops exactly at them. */}
-      <div className="relative z-10 mx-auto max-w-[72rem] border-t border-[var(--line)]" />
+      <div className="relative z-10 ts-frame border-t border-[var(--line)]" />
 
       {/* max-w-[72rem] with the padding *inside* it, matching <SiteHeader> and
           <SiteRails> - a max-w-6xl container sitting inside a px-6 footer put
           the content edge 1.5rem in from the rails instead of flush to them. */}
-      <div className="relative z-10 mx-auto max-w-[72rem] px-6 pt-16 sm:px-10">
+      <div className="relative z-10 ts-frame pt-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto_auto] lg:gap-x-16">
           {/* Brand */}
           <div>
@@ -166,7 +166,9 @@ export function SiteFooter() {
           padding and no max font size: the type scales purely with the
           container so the word scales with the frame. 17cqw fills ~94% of the
           rail width; 18cqw is the point where "tokensupply" exactly meets the
-          rails, so anything above it clips the trailing glyphs. */}
+          rails, so anything above it clips the trailing glyphs. Those figures
+          are tied to the wordmark face below - swapping the family changes the
+          glyph widths and so the ceiling. */}
       <div
         aria-hidden="true"
         className="pointer-events-none relative z-10 mx-auto mt-10 max-w-[72rem] select-none [container-type:inline-size]"
@@ -174,7 +176,7 @@ export function SiteFooter() {
         {/* Tinted with the brand mint rather than --fg: at watermark opacity a
             neutral ink reads as grey, so the colour has to come from the accent
             ramp. Held low enough to stay a wash behind the legal row. */}
-        <p className="translate-y-[26%] text-center text-[17cqw] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--accent)]/[0.14]">
+        <p className="translate-y-[26%] text-center text-[17cqw] leading-none font-semibold tracking-[-0.045em] whitespace-nowrap text-[var(--accent)]/[0.14] [font-family:var(--font-heading)]">
           tokensupply
         </p>
       </div>

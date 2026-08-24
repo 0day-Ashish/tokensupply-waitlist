@@ -32,17 +32,10 @@ export default function ContactPage() {
 
       <main className="flex-1">
         <section className="relative overflow-hidden pt-32 pb-24 sm:pt-36">
-          {/* Ambient glow, matching the home hero */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[-22%] -z-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full blur-[120px]"
-            style={{ background: "var(--accent-glow)" }}
-          />
-
           {/* max-w-[72rem] with the padding *inside* it, matching <SiteHeader>
               and <SiteRails>. A max-w-6xl container nested inside a px-6
               section put the content edge 1.5rem in from the rails. */}
-          <div className="mx-auto max-w-[72rem] px-6 sm:px-10">
+          <div className="ts-frame">
             {/* Heading */}
             <div className="ts-rise max-w-2xl">
               <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
@@ -58,7 +51,7 @@ export default function ContactPage() {
             <div className="mt-16 grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
               {/* Form */}
               <div
-                className="ts-rise rounded-2xl border border-[var(--line)] bg-[var(--bg-raised)] p-6 sm:p-8"
+                className="ts-rise rounded-lg border border-[var(--line)] bg-[var(--bg-raised)] p-6 sm:p-8"
                 style={{ animationDelay: "80ms" }}
               >
                 <ContactForm />
