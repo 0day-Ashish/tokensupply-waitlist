@@ -38,10 +38,10 @@ export default function ContactPage() {
           <div className="ts-frame">
             {/* Heading */}
             <div className="ts-rise max-w-2xl">
-              <h1 className="font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+              <h1 className="font-semibold text-[clamp(1.75rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                 Let&apos;s get your keys delivering themselves.
               </h1>
-              <p className="mt-5 max-w-xl text-[15.5px] leading-[1.55] sm:text-[17px] sm:leading-[1.6] text-[var(--fg-muted)]">
+              <p className="mt-5 max-w-xl text-[14px] leading-[1.55] sm:text-[17px] sm:leading-[1.6] text-[var(--fg-muted)]">
                 Whether you&apos;re weighing up TokenSupply for your store or you
                 already have a question mid-setup, send us a note and a real
                 person will get back to you.

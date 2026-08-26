@@ -80,10 +80,10 @@ export default function AboutPage() {
                 rail right, stacking below lg. */}
             <div className="ts-rise grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
               <div>
-                <h1 className="font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+                <h1 className="font-semibold text-[clamp(1.75rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                   We build the part nobody wants to do by hand.
                 </h1>
-                <p className="mt-5 max-w-[620px] text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 max-w-[620px] text-[14px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]">
                   TokenSupply is automated key delivery for stores that sell
                   digital goods. Connect the channels you already sell on, load
                   your stock once, and let every order fulfil itself.

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Wordmark } from "./logo";
 import { FooterWaves } from "./site-background";
+import { ThemeToggle } from "./theme-toggle";
 
 /** Mirrors the header nav, matching the live site's footer. */
 const PRODUCT = [
@@ -162,9 +163,9 @@ export function SiteFooter() {
               Privacy
             </Link>
           </div>
-          <p className="font-mono text-[11.5px] tracking-[0.1em] text-[var(--fg-faint)] uppercase">
-            Every key, one mark
-          </p>
+          {/* The theme switch sits at the right end of the legal row - a
+              utility control, kept out of the primary nav. */}
+          <ThemeToggle />
         </div>
       </div>
 
