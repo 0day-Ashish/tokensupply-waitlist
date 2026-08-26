@@ -29,6 +29,10 @@
   --color-mint-900: #0c2419;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Height of the fixed <SiteHeader> bar. The section markers stick directly
+     beneath it, so both read this rather than repeating a literal. */
+  --header-h: 68px;
 }
 
 /* Light is the only surface. */

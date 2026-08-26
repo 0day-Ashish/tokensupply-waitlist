@@ -3,6 +3,7 @@ import Image from "next/image";
 import { DashboardPreview } from "./components/dashboard-preview";
 import { Mark } from "./components/logo";
 import { ProofCounter } from "./components/proof-counter";
+import { SectionMarker } from "./components/section-marker";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { WaitlistForm } from "./components/waitlist-form";
@@ -176,6 +177,8 @@ export default function Home() {
 
         {/* ---------------- Dashboard preview slot ---------------- */}
         <section className="pb-24">
+          <SectionMarker label="The dashboard" index={1} total={4} />
+
           {/* Rail-width, matching the hero above and the interior pages. */}
           <div className="ts-frame">
             <div className="relative">
@@ -280,6 +283,8 @@ export default function Home() {
 
         {/* ---------------- Proof numbers ---------------- */}
         <section className="py-14">
+          <SectionMarker label="By the numbers" index={2} total={4} />
+
           {/* Hairline-ruled columns rather than centred blocks, matching the
               timeline on /about and the feature lists on the product pages. */}
           <div className="ts-frame">
@@ -313,6 +318,8 @@ export default function Home() {
 
         {/* ---------------- How it works ---------------- */}
         <section className="py-24">
+          <SectionMarker label="How it works" index={3} total={4} />
+
           <div className="ts-frame">
             <div className="max-w-2xl">
               <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
@@ -349,6 +356,8 @@ export default function Home() {
 
         {/* ---------------- Closing CTA ---------------- */}
         <section className="pt-8 pb-28">
+          <SectionMarker label="Get started" index={4} total={4} />
+
           {/* The same bordered panel the interior pages close on: copy left,
               form right, so the section reads as part of the page's rhythm
               rather than a centred marketing block. */}
