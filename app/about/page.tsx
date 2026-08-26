@@ -80,10 +80,10 @@ export default function AboutPage() {
                 rail right, stacking below lg. */}
             <div className="ts-rise grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
               <div>
-                <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+                <h1 className="font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                   We build the part nobody wants to do by hand.
                 </h1>
-                <p className="mt-5 max-w-[620px] text-[17px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 max-w-[620px] text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]">
                   TokenSupply is automated key delivery for stores that sell
                   digital goods. Connect the channels you already sell on, load
                   your stock once, and let every order fulfil itself.
@@ -113,7 +113,7 @@ export default function AboutPage() {
         <section className="pb-20">
           <div className="ts-frame">
             <div className="max-w-2xl">
-              <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="font-semibold text-[clamp(1.75rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 How we got here.
               </h2>
             </div>
@@ -129,10 +129,10 @@ export default function AboutPage() {
                   <span className="font-mono text-[11.5px] tracking-[0.12em] text-[var(--accent-text)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+                  <h3 className="mt-4 text-[16px] font-semibold tracking-[-0.01em] sm:text-[17px] text-[var(--fg)]">
                     {entry.phase}
                   </h3>
-                  <p className="mt-2.5 text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                  <p className="mt-2.5 text-[13.5px] leading-[1.55] sm:text-[14.5px] sm:leading-[1.6] text-[var(--fg-muted)]">
                     {entry.body}
                   </p>
                 </li>
@@ -145,10 +145,10 @@ export default function AboutPage() {
         <section className="pb-20">
           <div className="ts-frame">
             <div className="max-w-2xl">
-              <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="font-semibold text-[clamp(1.75rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 What we hold to.
               </h2>
-              <p className="mt-5 text-[16px] leading-[1.65] text-[var(--fg-muted)]">
+              <p className="mt-5 text-[15px] leading-[1.6] sm:text-[16px] sm:leading-[1.65] text-[var(--fg-muted)]">
                 The rules that decide what gets built and what gets refused.
               </p>
             </div>
@@ -163,10 +163,10 @@ export default function AboutPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+                    <h3 className="text-[16px] font-semibold tracking-[-0.01em] sm:text-[17px] text-[var(--fg)]">
                       {principle.title}
                     </h3>
-                    <p className="mt-2.5 max-w-[38ch] text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                    <p className="mt-2.5 max-w-[38ch] text-[13.5px] leading-[1.55] sm:text-[14.5px] sm:leading-[1.6] text-[var(--fg-muted)]">
                       {principle.body}
                     </p>
                   </div>
@@ -213,7 +213,7 @@ export default function AboutPage() {
                     <span className="text-[16px] font-semibold text-[var(--fg)] transition-colors duration-200 group-hover:text-[var(--accent-text)]">
                       {item.label}
                     </span>
-                    <span className="mt-2 block text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                    <span className="mt-2 block text-[13.5px] leading-[1.55] sm:text-[14.5px] sm:leading-[1.6] text-[var(--fg-muted)]">
                       {item.note}
                     </span>
                   </Link>
@@ -226,7 +226,7 @@ export default function AboutPage() {
         {/* ---------------- Closing CTA ---------------- */}
         <section className="pt-4 pb-28">
           {/* Same bordered panel as <FeaturePage>'s closing CTA. */}
-          <div className="relative ts-frame-flush overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]/50">
+          <div className="relative ts-frame-flush overflow-hidden rounded-none border border-[var(--line)] bg-[var(--bg-raised)]/50">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -236,12 +236,12 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="relative z-10 grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16">
+            <div className="relative z-10 grid gap-10 p-8 text-center sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16 lg:text-left">
               <div>
-                <h2 className="font-semibold text-[clamp(1.85rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
+                <h2 className="font-semibold text-[clamp(1.65rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
                   Come and build the boring part with us.
                 </h2>
-                <p className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 mx-auto max-w-[46ch] text-[14.5px] leading-[1.6] sm:text-[15.5px] sm:leading-[1.65] text-[var(--fg-muted)] lg:mx-0">
                   Join the waitlist and your first channel is synced the week
                   you get access.
                 </p>

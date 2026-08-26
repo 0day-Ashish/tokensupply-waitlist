@@ -95,7 +95,7 @@ export default function Home() {
               </div>
 
               <h1
-                className="ts-rise mt-9 font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.1] tracking-[-0.02em] text-balance-pretty"
+                className="ts-rise mt-9 font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.1] tracking-[-0.02em] text-balance-pretty"
                 style={{ animationDelay: "60ms" }}
               >
                 <span className="text-[var(--accent)]">
@@ -107,7 +107,7 @@ export default function Home() {
               </h1>
 
               <p
-                className="ts-rise mx-auto mt-6 max-w-[600px] text-[17px] leading-[1.65] text-[var(--fg-muted)]"
+                className="ts-rise mx-auto mt-6 max-w-[600px] text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]"
                 style={{ animationDelay: "140ms" }}
               >
                 TokenSupply connects the channels you already sell on, from
@@ -217,10 +217,10 @@ export default function Home() {
 
             {/* Channel strip */}
             <div className="mt-32 sm:mt-40">
-              <h2 className="max-w-2xl text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] font-semibold tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="max-w-2xl text-[clamp(1.75rem,4.4vw,2.9rem)] leading-[1.15] font-semibold tracking-[-0.015em] text-[var(--fg)]">
                 Every channel you sell on, in one place.
               </h2>
-              <p className="mt-5 max-w-xl text-[16px] leading-[1.65] text-[var(--fg-muted)]">
+              <p className="mt-5 max-w-xl text-[15px] leading-[1.6] sm:text-[16px] sm:leading-[1.65] text-[var(--fg-muted)]">
                 Connect a marketplace once and TokenSupply keeps its stock and
                 deliveries in sync with everywhere else.
               </p>
@@ -322,7 +322,7 @@ export default function Home() {
 
           <div className="ts-frame">
             <div className="max-w-2xl">
-              <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="font-semibold text-[clamp(1.75rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 Three steps. Then it stops being your problem.
               </h2>
             </div>
@@ -341,10 +341,10 @@ export default function Home() {
                     {step.n}
                   </span>
                   <div>
-                    <h3 className="text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+                    <h3 className="text-[16px] font-semibold tracking-[-0.01em] sm:text-[17px] text-[var(--fg)]">
                       {step.title}
                     </h3>
-                    <p className="mt-2.5 text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                    <p className="mt-2.5 text-[13.5px] leading-[1.55] sm:text-[14.5px] sm:leading-[1.6] text-[var(--fg-muted)]">
                       {step.body}
                     </p>
                   </div>
@@ -361,7 +361,7 @@ export default function Home() {
           {/* The same bordered panel the interior pages close on: copy left,
               form right, so the section reads as part of the page's rhythm
               rather than a centred marketing block. */}
-          <div className="relative ts-frame-flush overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]/50">
+          <div className="relative ts-frame-flush overflow-hidden rounded-none border border-[var(--line)] bg-[var(--bg-raised)]/50">
             {/* Ghost mark clipped to the panel. */}
             <div
               aria-hidden="true"
@@ -378,15 +378,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative z-10 grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16">
+            <div className="relative z-10 grid gap-10 p-8 text-center sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16 lg:text-left">
               <div>
-                <h2 className="font-semibold text-[clamp(1.85rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em]">
+                <h2 className="font-semibold text-[clamp(1.65rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em]">
                   <span className="text-[var(--fg)]">Never paste a key</span>{" "}
                   <span className="text-[var(--accent)]">by hand</span>{" "}
                   <span className="text-[var(--fg)]">again.</span>
                 </h2>
 
-                <p className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 mx-auto max-w-[46ch] text-[14.5px] leading-[1.6] sm:text-[15.5px] sm:leading-[1.65] text-[var(--fg-muted)] lg:mx-0">
                   Every channel, every key, one place. Your first channel is
                   synced the week you get access.
                 </p>

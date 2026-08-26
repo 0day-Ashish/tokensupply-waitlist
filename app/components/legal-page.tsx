@@ -31,10 +31,10 @@ export function LegalPage({
           <div className="mx-auto max-w-3xl">
             {/* Heading */}
             <div className="ts-rise">
-              <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+              <h1 className="font-semibold text-[clamp(2.6rem,5.6vw,3.4rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                 {title}
               </h1>
-              <p className="mt-5 text-[17px] leading-[1.65] text-[var(--fg-muted)]">
+              <p className="mt-5 text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]">
                 {intro}
               </p>
               <p className="mt-6 font-mono text-[11px] tracking-[0.14em] text-[var(--fg-faint)] uppercase">

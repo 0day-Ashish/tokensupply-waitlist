@@ -73,10 +73,10 @@ export function FeaturePage({
                 squeezing the measure of either. */}
             <div className="ts-rise grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
               <div>
-                <h1 className="font-semibold text-[clamp(2.4rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
+                <h1 className="font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.08] tracking-[-0.02em] text-[var(--fg)]">
                   {title}
                 </h1>
-                <p className="mt-5 max-w-[620px] text-[17px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 max-w-[620px] text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]">
                   {intro}
                 </p>
 
@@ -135,11 +135,11 @@ export function FeaturePage({
               heading flush against the left rail. */}
           <div className="ts-frame">
             <div className="max-w-2xl">
-              <h2 className="font-semibold text-[clamp(2.1rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+              <h2 className="font-semibold text-[clamp(1.75rem,4.4vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
                 {featuresTitle}
               </h2>
               {featuresIntro && (
-                <p className="mt-5 text-[16px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 text-[15px] leading-[1.6] sm:text-[16px] sm:leading-[1.65] text-[var(--fg-muted)]">
                   {featuresIntro}
                 </p>
               )}
@@ -159,10 +159,10 @@ export function FeaturePage({
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+                    <h3 className="text-[16px] font-semibold tracking-[-0.01em] sm:text-[17px] text-[var(--fg)]">
                       {feature.title}
                     </h3>
-                    <p className="mt-2.5 max-w-[38ch] text-[14.5px] leading-[1.6] text-[var(--fg-muted)]">
+                    <p className="mt-2.5 max-w-[38ch] text-[13.5px] leading-[1.55] sm:text-[14.5px] sm:leading-[1.6] text-[var(--fg-muted)]">
                       {feature.body}
                     </p>
                   </div>
@@ -179,7 +179,7 @@ export function FeaturePage({
           {/* A bordered panel rather than a centred block: the copy holds the
               left and the form the right, so the section reads as part of the
               page's rhythm instead of a marketing interruption. */}
-          <div className="relative ts-frame-flush overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-raised)]/50">
+          <div className="relative ts-frame-flush overflow-hidden rounded-none border border-[var(--line)] bg-[var(--bg-raised)]/50">
             {/* Ghost mark clipped to the panel, matching the home page. */}
             <div
               aria-hidden="true"
@@ -190,12 +190,12 @@ export function FeaturePage({
               </div>
             </div>
 
-            <div className="relative z-10 grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16">
+            <div className="relative z-10 grid gap-10 p-8 text-center sm:p-12 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center lg:gap-16 lg:text-left">
               <div>
-                <h2 className="font-semibold text-[clamp(1.85rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
+                <h2 className="font-semibold text-[clamp(1.65rem,3.8vw,2.5rem)] leading-[1.14] tracking-[-0.025em] text-[var(--fg)]">
                   {ctaTitle}
                 </h2>
-                <p className="mt-5 max-w-[46ch] text-[15.5px] leading-[1.65] text-[var(--fg-muted)]">
+                <p className="mt-5 mx-auto max-w-[46ch] text-[14.5px] leading-[1.6] sm:text-[15.5px] sm:leading-[1.65] text-[var(--fg-muted)] lg:mx-0">
                   Join the waitlist and your first channel is synced the week
                   you get access.
                 </p>

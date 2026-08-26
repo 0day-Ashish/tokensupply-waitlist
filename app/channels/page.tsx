@@ -143,10 +143,10 @@ export default function ChannelsPage() {
       ctaTitle="Don't see your channel? Tell us where you sell."
       extra={
         <div className="ts-frame pb-4">
-          <h2 className="font-semibold text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
+          <h2 className="font-semibold text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.15] tracking-[-0.015em] text-[var(--fg)]">
             Ten channels at launch.
           </h2>
-          <p className="mt-5 max-w-xl text-[16px] leading-[1.65] text-[var(--fg-muted)]">
+          <p className="mt-5 max-w-xl text-[15px] leading-[1.6] sm:text-[16px] sm:leading-[1.65] text-[var(--fg-muted)]">
             Marketplaces and storefronts with full integrations on day one.
           </p>
           {/* No cells or rules: the logos sit straight on the page, spaced by
