@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Wordmark } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 
 /** Primary nav. Every route here is built. */
 const NAV = [
@@ -83,33 +84,39 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Hamburger. Two bars that rotate into a cross rather than a swapped
-            icon, so the shape morphs instead of popping. Hidden from lg up,
-            where the inline nav takes over. */}
-        <button
-          type="button"
-          onClick={() => {
-            setOpen((value) => !value);
-            setOpenedAt(pathname);
-          }}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="-mr-2 grid h-10 w-10 shrink-0 place-items-center lg:hidden"
-        >
-          <span className="relative block h-[14px] w-[22px]">
-            <span
-              className={`absolute left-0 block h-[1.5px] w-full rounded-full bg-[var(--fg)] transition-transform duration-300 ease-[var(--ease-out-quint)] ${
-                open ? "top-[6px] rotate-45" : "top-0 rotate-0"
-              }`}
-            />
-            <span
-              className={`absolute left-0 block h-[1.5px] w-full rounded-full bg-[var(--fg)] transition-transform duration-300 ease-[var(--ease-out-quint)] ${
-                open ? "top-[6px] -rotate-45" : "top-[12px] rotate-0"
-              }`}
-            />
-          </span>
-        </button>
+        {/* Theme switch and hamburger share the right end of the bar. The
+            switch shows at every width; the hamburger only below lg. */}
+        <div className="-mr-2 flex shrink-0 items-center gap-1">
+          <ThemeToggle />
+
+          {/* Hamburger. Two bars that rotate into a cross rather than a swapped
+              icon, so the shape morphs instead of popping. Hidden from lg up,
+              where the inline nav takes over. */}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen((value) => !value);
+              setOpenedAt(pathname);
+            }}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="grid h-10 w-10 shrink-0 place-items-center lg:hidden"
+          >
+            <span className="relative block h-[14px] w-[22px]">
+              <span
+                className={`absolute left-0 block h-[1.5px] w-full rounded-full bg-[var(--fg)] transition-transform duration-300 ease-[var(--ease-out-quint)] ${
+                  open ? "top-[6px] rotate-45" : "top-0 rotate-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 block h-[1.5px] w-full rounded-full bg-[var(--fg)] transition-transform duration-300 ease-[var(--ease-out-quint)] ${
+                  open ? "top-[6px] -rotate-45" : "top-[12px] rotate-0"
+                }`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Panel. Height and opacity are animated rather than a transform so the

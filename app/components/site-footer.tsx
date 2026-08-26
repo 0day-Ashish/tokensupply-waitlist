@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Wordmark } from "./logo";
+import { FooterWaves } from "./site-background";
 
 /** Mirrors the header nav, matching the live site's footer. */
 const PRODUCT = [
@@ -19,6 +20,11 @@ const SOCIALS = [
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden">
+      {/* Wave field, scoped to the foot of the page. Sits at the very back of
+          the footer's stacking context, under the dot lattice and the content
+          alike, so it reads as the page settling rather than a tint over it. */}
+      <FooterWaves />
+
       {/* Dot grid, matching the reference: a 3px mint dot on a 16px lattice.
           Two masks are stacked - a horizontal one that keeps the dots at the
           left and right edges and clears the middle, and a vertical one that

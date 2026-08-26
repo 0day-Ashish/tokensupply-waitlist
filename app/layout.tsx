@@ -39,8 +39,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="light"
+      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Applies the stored theme before first paint. Without this the page
+            renders light, then swaps on hydration - a visible flash for anyone
+            on dark. It runs inline and synchronously for that reason.
+            suppressHydrationWarning above covers the attribute this rewrites. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');var t=s==='dark'||s==='light'?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteBackground />
         <SiteRails />

@@ -35,7 +35,7 @@
   --header-h: 68px;
 }
 
-/* Light is the only surface. */
+/* Light is the default surface; the dark block below overrides it. */
 :root,
 [data-theme="light"] {
   --bg: #ffffff;
@@ -62,9 +62,40 @@
   --mark-ghost: rgb(13 132 96 / 0.06);
 }
 
+/* Dark surface. Only the tokens change - every component reads these, so
+   nothing else needs a dark variant. Neon mint returns as the accent here:
+   it fails on white (1.61:1) but scores 13:1 on black, so the deepened mint
+   the light theme needs would read as muddy on this surface. */
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-raised: #0b0f0d;
+  --bg-inset: #101613;
+  --fg: #ffffff;
+  /* Muted/faint pair re-derived for black: 9.19:1 and 5.94:1, comfortably
+     past the 4.5:1 floor the light theme holds. */
+  --fg-muted: #a3aeaa;
+  --fg-faint: #7f8b86;
+  --line: #1e2624;
+  --line-strong: #2c3532;
+  --accent: #35e6a6;
+  --accent-text: #35e6a6;
+  /* Ink on an --accent fill: 13:1 on the neon mint. */
+  --accent-ink: #000000;
+  --accent-glow: rgb(53 230 166 / 0.12);
+  --grid-line: rgb(255 255 255 / 0.03);
+  --grid-dot: rgb(53 230 166 / 0.22);
+  --mark-ghost: rgb(53 230 166 / 0.05);
+}
+
 html {
   background: var(--bg);
   color-scheme: light;
+}
+
+/* data-theme sits on <html> itself, so this matches that element directly.
+   It tells the browser to render form controls and scrollbars dark. */
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
