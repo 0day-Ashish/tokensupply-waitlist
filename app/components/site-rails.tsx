@@ -19,7 +19,7 @@ export function SiteRails() {
           max-w-5xl (64rem), so 72rem leaves only ~4rem of clearance a side. The
           margin keeps them off the screen edge on narrower viewports, where a
           rail flush against the bezel reads as nothing at all. */}
-      <div className="relative mx-3 w-full max-w-[72rem] sm:mx-5">
+      <div className="relative mx-3 max-w-[72rem] flex-1 sm:mx-5">
         <div className="absolute inset-y-0 left-0 w-px bg-[var(--line)]" />
         <div className="absolute inset-y-0 right-0 w-px bg-[var(--line)]" />
       </div>

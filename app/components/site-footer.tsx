@@ -33,7 +33,7 @@ export function SiteFooter() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 flex justify-center"
       >
-        <div className="relative mx-3 w-full max-w-[72rem] bg-[radial-gradient(var(--grid-dot)_1.5px,transparent_1.5px)] bg-size-[16px_16px] mask-intersect mask-[linear-gradient(to_right,#000_0%,transparent_28%,transparent_72%,#000_100%),linear-gradient(to_bottom,#000_0%,#000_45%,transparent_85%)] sm:mx-5" />
+        <div className="relative mx-3 max-w-[72rem] flex-1 bg-[radial-gradient(var(--grid-dot)_1.5px,transparent_1.5px)] bg-size-[16px_16px] mask-intersect mask-[linear-gradient(to_right,#000_0%,transparent_28%,transparent_72%,#000_100%),linear-gradient(to_bottom,#000_0%,#000_45%,transparent_85%)] sm:mx-5" />
       </div>
 
       {/* The rule is drawn on this frame-width element rather than on <footer>

@@ -100,7 +100,10 @@ body {
  * rails from drifting: change the cap or the inset here and both move.
  */
 @utility ts-frame {
-  width: 100%;
+  /* No `width: 100%`: with a margin-inline on the same element that makes the
+     margin box 100% *plus* both margins, so the frame overflowed by 1.5rem and
+     the content sat shifted to the right on a phone. Letting the box size
+     itself keeps the two gaps equal. */
   /* Cap and inset both mirror <SiteRails>: the rails are max-w-[72rem] with
      mx-3 / sm:mx-5, so the frame has to carry the same margin or it sits on
      the rail line instead of inside it. */
@@ -124,7 +127,8 @@ body {
    Padding here would inset the content twice and pull the border in off the
    rails, so only the width and inset are shared. */
 @utility ts-frame-flush {
-  width: 100%;
+  /* Same reason as ts-frame above: no `width: 100%` alongside margin-inline,
+     or the margin box overflows by both margins. */
   max-width: 72rem;
   margin-inline: 0.75rem;
 
