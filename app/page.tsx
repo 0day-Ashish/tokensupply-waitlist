@@ -95,7 +95,7 @@ export default function Home() {
               </div>
 
               <h1
-                className="ts-rise mt-9 font-semibold text-[clamp(2.6rem,5.6vw,3.6rem)] leading-[1.1] tracking-[-0.02em] text-balance-pretty"
+                className="ts-rise mt-9 font-semibold text-[clamp(1.75rem,5.6vw,3.6rem)] leading-[1.12] tracking-[-0.025em] text-balance-pretty sm:leading-[1.1] sm:tracking-[-0.02em]"
                 style={{ animationDelay: "60ms" }}
               >
                 <span className="text-[var(--accent)]">
@@ -107,7 +107,7 @@ export default function Home() {
               </h1>
 
               <p
-                className="ts-rise mx-auto mt-6 max-w-[600px] text-[15.5px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]"
+                className="ts-rise mx-auto mt-6 max-w-[600px] text-[14px] leading-[1.6] sm:text-[17px] sm:leading-[1.65] text-[var(--fg-muted)]"
                 style={{ animationDelay: "140ms" }}
               >
                 TokenSupply connects the channels you already sell on, from
